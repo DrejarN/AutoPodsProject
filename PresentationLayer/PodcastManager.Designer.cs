@@ -47,16 +47,26 @@
             this.listView3 = new System.Windows.Forms.ListView();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.Avsnitt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Namn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Frekvens = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Kategori = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // listView1
             // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Avsnitt,
+            this.Namn,
+            this.Frekvens,
+            this.Kategori});
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(12, 56);
+            this.listView1.Location = new System.Drawing.Point(12, 34);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(489, 108);
+            this.listView1.Size = new System.Drawing.Size(489, 130);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
             // 
             // listView2
             // 
@@ -214,6 +224,26 @@
             this.textBox3.Size = new System.Drawing.Size(290, 176);
             this.textBox3.TabIndex = 20;
             // 
+            // Avsnitt
+            // 
+            this.Avsnitt.Text = "Avsnitt";
+            this.Avsnitt.Width = 103;
+            // 
+            // Namn
+            // 
+            this.Namn.Text = "Namn";
+            this.Namn.Width = 113;
+            // 
+            // Frekvens
+            // 
+            this.Frekvens.Text = "Frekvens";
+            this.Frekvens.Width = 147;
+            // 
+            // Kategori
+            // 
+            this.Kategori.Text = "Kategori";
+            this.Kategori.Width = 121;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -266,6 +296,10 @@
         private System.Windows.Forms.ListView listView3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.ColumnHeader Avsnitt;
+        private System.Windows.Forms.ColumnHeader Namn;
+        private System.Windows.Forms.ColumnHeader Frekvens;
+        private System.Windows.Forms.ColumnHeader Kategori;
     }
 }
 
