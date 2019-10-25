@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Logic;
 
-namespace Logic
+namespace Data
 {
-    public class PodcastHanterare
+    public class Episode : Podcast
     {
+        public string Name;
+        public decimal EpisodeLength;
+
     }
 }
