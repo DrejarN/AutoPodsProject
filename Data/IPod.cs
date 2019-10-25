@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-    public enum Kategori
+    public interface IPod
     {
-        Lifestyle,
-        Gaming
+        string PodcastString { get; set; }
     }
 }

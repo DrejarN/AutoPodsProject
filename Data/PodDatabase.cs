@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-    public class PodDatabas
+    public class PodDatabase
     {
         public List<Podcast> Porcasts { get; set; }
+        public List<Category> Categories { get; set; }
     }
 }
