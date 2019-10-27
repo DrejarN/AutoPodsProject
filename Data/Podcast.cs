@@ -6,18 +6,22 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-    public abstract class Podcast
+    public class Podcast
     {
         public string Title { get; set; }
         public string Url { get; set; }
         public Category Type { get; set; }
         public List<Episode> Episodes { get; set; }
 
-        protected Podcast(string title, string url, Category type)
+        public Podcast(string title, string url, Category type)
         {
             Title = title;
             Url = url;
             Type = type;
+        }
+
+        public Podcast()
+        {
         }
     }
 }

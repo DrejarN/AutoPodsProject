@@ -62,9 +62,9 @@
             this.Kategori});
             this.podcastList.HideSelection = false;
             this.podcastList.Location = new System.Drawing.Point(9, 28);
-            this.podcastList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.podcastList.Margin = new System.Windows.Forms.Padding(2);
             this.podcastList.Name = "podcastList";
-            this.podcastList.Size = new System.Drawing.Size(368, 106);
+            this.podcastList.Size = new System.Drawing.Size(443, 106);
             this.podcastList.TabIndex = 0;
             this.podcastList.UseCompatibleStateImageBehavior = false;
             this.podcastList.View = System.Windows.Forms.View.Details;
@@ -93,7 +93,7 @@
             // 
             this.categoryList.HideSelection = false;
             this.categoryList.Location = new System.Drawing.Point(412, 28);
-            this.categoryList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.categoryList.Margin = new System.Windows.Forms.Padding(2);
             this.categoryList.Name = "categoryList";
             this.categoryList.Size = new System.Drawing.Size(210, 106);
             this.categoryList.TabIndex = 1;
@@ -112,7 +112,7 @@
             // categoryInput
             // 
             this.categoryInput.Location = new System.Drawing.Point(412, 158);
-            this.categoryInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.categoryInput.Margin = new System.Windows.Forms.Padding(2);
             this.categoryInput.Name = "categoryInput";
             this.categoryInput.Size = new System.Drawing.Size(210, 20);
             this.categoryInput.TabIndex = 3;
@@ -120,7 +120,7 @@
             // newCategoryBtn
             // 
             this.newCategoryBtn.Location = new System.Drawing.Point(412, 194);
-            this.newCategoryBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.newCategoryBtn.Margin = new System.Windows.Forms.Padding(2);
             this.newCategoryBtn.Name = "newCategoryBtn";
             this.newCategoryBtn.Size = new System.Drawing.Size(66, 28);
             this.newCategoryBtn.TabIndex = 4;
@@ -160,7 +160,7 @@
             // urlInput
             // 
             this.urlInput.Location = new System.Drawing.Point(9, 176);
-            this.urlInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.urlInput.Margin = new System.Windows.Forms.Padding(2);
             this.urlInput.Name = "urlInput";
             this.urlInput.Size = new System.Drawing.Size(153, 20);
             this.urlInput.TabIndex = 10;
@@ -169,7 +169,7 @@
             // 
             this.frequencyCb.FormattingEnabled = true;
             this.frequencyCb.Location = new System.Drawing.Point(178, 176);
-            this.frequencyCb.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.frequencyCb.Margin = new System.Windows.Forms.Padding(2);
             this.frequencyCb.Name = "frequencyCb";
             this.frequencyCb.Size = new System.Drawing.Size(92, 21);
             this.frequencyCb.TabIndex = 11;
@@ -178,7 +178,7 @@
             // 
             this.categoryCb.FormattingEnabled = true;
             this.categoryCb.Location = new System.Drawing.Point(285, 176);
-            this.categoryCb.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.categoryCb.Margin = new System.Windows.Forms.Padding(2);
             this.categoryCb.Name = "categoryCb";
             this.categoryCb.Size = new System.Drawing.Size(92, 21);
             this.categoryCb.TabIndex = 12;
@@ -186,7 +186,7 @@
             // saveCategoryBtn
             // 
             this.saveCategoryBtn.Location = new System.Drawing.Point(482, 194);
-            this.saveCategoryBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.saveCategoryBtn.Margin = new System.Windows.Forms.Padding(2);
             this.saveCategoryBtn.Name = "saveCategoryBtn";
             this.saveCategoryBtn.Size = new System.Drawing.Size(66, 28);
             this.saveCategoryBtn.TabIndex = 13;
@@ -196,7 +196,7 @@
             // removeCategoryBtn
             // 
             this.removeCategoryBtn.Location = new System.Drawing.Point(553, 194);
-            this.removeCategoryBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.removeCategoryBtn.Margin = new System.Windows.Forms.Padding(2);
             this.removeCategoryBtn.Name = "removeCategoryBtn";
             this.removeCategoryBtn.Size = new System.Drawing.Size(66, 28);
             this.removeCategoryBtn.TabIndex = 14;
@@ -206,17 +206,18 @@
             // addPodcastBtn
             // 
             this.addPodcastBtn.Location = new System.Drawing.Point(169, 216);
-            this.addPodcastBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.addPodcastBtn.Margin = new System.Windows.Forms.Padding(2);
             this.addPodcastBtn.Name = "addPodcastBtn";
             this.addPodcastBtn.Size = new System.Drawing.Size(66, 28);
             this.addPodcastBtn.TabIndex = 15;
             this.addPodcastBtn.Text = "Lägg till";
             this.addPodcastBtn.UseVisualStyleBackColor = true;
+            this.addPodcastBtn.Click += new System.EventHandler(this.addPodcastBtn_Click);
             // 
             // updatePodcastBtn
             // 
             this.updatePodcastBtn.Location = new System.Drawing.Point(239, 216);
-            this.updatePodcastBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.updatePodcastBtn.Margin = new System.Windows.Forms.Padding(2);
             this.updatePodcastBtn.Name = "updatePodcastBtn";
             this.updatePodcastBtn.Size = new System.Drawing.Size(66, 28);
             this.updatePodcastBtn.TabIndex = 16;
@@ -226,7 +227,7 @@
             // removePodcastBtn
             // 
             this.removePodcastBtn.Location = new System.Drawing.Point(310, 216);
-            this.removePodcastBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.removePodcastBtn.Margin = new System.Windows.Forms.Padding(2);
             this.removePodcastBtn.Name = "removePodcastBtn";
             this.removePodcastBtn.Size = new System.Drawing.Size(66, 28);
             this.removePodcastBtn.TabIndex = 17;
@@ -237,7 +238,7 @@
             // 
             this.episodeList.HideSelection = false;
             this.episodeList.Location = new System.Drawing.Point(10, 294);
-            this.episodeList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.episodeList.Margin = new System.Windows.Forms.Padding(2);
             this.episodeList.Name = "episodeList";
             this.episodeList.Size = new System.Drawing.Size(367, 110);
             this.episodeList.TabIndex = 18;
@@ -257,7 +258,7 @@
             // episodeDesc
             // 
             this.episodeDesc.Location = new System.Drawing.Point(404, 261);
-            this.episodeDesc.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.episodeDesc.Margin = new System.Windows.Forms.Padding(2);
             this.episodeDesc.Multiline = true;
             this.episodeDesc.Name = "episodeDesc";
             this.episodeDesc.Size = new System.Drawing.Size(218, 144);
@@ -288,7 +289,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.categoryList);
             this.Controls.Add(this.podcastList);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);

@@ -11,4 +11,6 @@ namespace Data
         public List<Podcast> Porcasts { get; set; }
         public List<Category> Categories { get; set; }
     }
+          
+
 }

@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.ServiceModel.Syndication;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 using Data;
 using Logic;
 
@@ -18,6 +20,14 @@ namespace PresentationLayer
         public Form1()
         {
             InitializeComponent();
+        }
+
+        public string TextBoxValue
+        {
+            set
+            {
+                episodeDesc.Text = value;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -39,5 +49,12 @@ namespace PresentationLayer
         {
 
         }
+
+        private void addPodcastBtn_Click(object sender, EventArgs e)
+        {
+            episodeDesc.AppendText(PodcastHandler.GetPodcastFeed().ToString());
+        }
     }
+
 }
+
