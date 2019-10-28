@@ -1,31 +1,30 @@
-﻿using Microsoft.SqlServer.Server;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ServiceModel.Syndication;
 using System.Xml;
 using Data;
-using System.Text;
+using System.Linq;
+using System.Xml.Linq;
 
 namespace Logic
 {
     public class PodcastHandler
     {
-        public static List<Podcast> GetPodcastFeed()
+        public static List<Podcast> GetPodcastFeed()   
         {
             List<Podcast> Podcastlista = new List<Podcast>();
-            string title = "";
-            string url = "";
             string rssFeedurl = "http://borssnack.libsyn.com/rss";
             using (XmlReader reader = XmlReader.Create(rssFeedurl))
             {
                 SyndicationFeed feed = SyndicationFeed.Load(reader);
-                //Console.WriteLine(feed.Title.Text);
-                //Console.WriteLine(feed.Links[0].Uri);
                 foreach (SyndicationItem item in feed.Items)
                 {
                     Podcast nyPodd = new Podcast();
-                    nyPodd.Title  += item.Title.Text;
-                    nyPodd.Url += item.Links[0].Uri.OriginalString;
+                    nyPodd.Title  += item.Title.Text; //funkar
+                    nyPodd.Url += item.Links[0].Uri.OriginalString; //funkar
+                    nyPodd.Description = item.Summary.Text; //funkar men tar med <p> taggar
+                    //nyPodd.Type = item.Categories.attributes().text);//funkar ej, antagligen för att vår category är en klass
+                    //nyPodd.Type = item.ElementExtensions.ReadElementExtensions<XElement>("category", ns)
+                    //            .Select(e => e.Value).First();
                     Podcastlista.Add(nyPodd);
                 }
                 return Podcastlista;

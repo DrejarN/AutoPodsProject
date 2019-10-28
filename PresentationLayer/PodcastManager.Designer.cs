@@ -223,6 +223,7 @@
             this.updatePodcastBtn.TabIndex = 16;
             this.updatePodcastBtn.Text = "Spara";
             this.updatePodcastBtn.UseVisualStyleBackColor = true;
+            this.updatePodcastBtn.Click += new System.EventHandler(this.updatePodcastBtn_Click);
             // 
             // removePodcastBtn
             // 

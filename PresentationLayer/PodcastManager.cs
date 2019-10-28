@@ -54,6 +54,11 @@ namespace PresentationLayer
         {
             episodeDesc.AppendText(PodcastHandler.GetPodcastFeed().ToString());
         }
+
+        private void updatePodcastBtn_Click(object sender, EventArgs e)
+        {
+            SerializerService.SerializerJSON();
+        }
     }
 
 }
