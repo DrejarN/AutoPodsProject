@@ -126,6 +126,7 @@
             this.newCategoryBtn.TabIndex = 4;
             this.newCategoryBtn.Text = "Ny";
             this.newCategoryBtn.UseVisualStyleBackColor = true;
+            this.newCategoryBtn.Click += new System.EventHandler(this.newCategoryBtn_Click);
             // 
             // label2
             // 

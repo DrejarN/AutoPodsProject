@@ -9,6 +9,29 @@ namespace Logic
 {
     public class PodcastHandler
     {
+        //On start-up
+
+        public void FillCategoryList() //Fyller hela kategorilistan från en JSON fil där de är sparade?
+        {
+
+        }
+
+        public void FillPodcastFeed() //Fyller podfeeden med content ur nersparad JSON-fil.
+        {
+
+        }
+
+        //
+        public void FillEpisodeListOnPodcastClick() //När man klickar på en podcast i podfeeden displayas alla avsnitt tillhörande Podcasten i avsnittlistan.
+        {
+
+        }
+
+        public void FillDescriptionBox() //När du klickar på ett avsnitt i avsnittslistan fylls textboxen till höger med en summary om avsnittet.
+        {
+
+        }
+
         public static List<Podcast> GetPodcastFeed()   
         {
             List<Podcast> Podcastlista = new List<Podcast>();

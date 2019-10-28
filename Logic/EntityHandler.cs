@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Data;
 
 namespace Logic
 {
-    class EntityHandler
+    public class EntityHandler
     {
-        public void CreateNewCategory(string name)
+        public static void CreateNewCategory(string name)
         {
             try
             {
+                List<Category> categories = new List<Category>();
+                Category category = new Category(name);
+                categories.Add(category);
+                SerializerService.SerializerCategories();
 
             } catch (Exception ex)
             {

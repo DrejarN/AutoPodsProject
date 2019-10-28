@@ -11,28 +11,15 @@ namespace Logic
 {
     public class SerializerService
     {
-        /*
-        public static void SerializerJSON()
-        {
-            List<Podcast> podcasts = PodcastHandler.GetPodcastFeed();
 
-            using (StreamWriter file = File.CreateText(@"C:\podFeeds\path.txt"))
-            {
-                JsonSerializer serializer = new JsonSerializer();
-                //serialize object directly into file stream
-                serializer.Serialize(file, podcasts);
-            }
-        }
-        */
-
-        public static void SerializerJSON()
+        public static void SerializerPodcastfeed() //JSON-fil för Podcasts
         {
 
             List<Podcast> podcasts = PodcastHandler.GetPodcastFeed();
 
             try
             {
-                using (StreamWriter file = File.CreateText(@"C:\podFeeds\path.txt"))
+                using (StreamWriter file = File.CreateText(@"C:\podFeeds\pdfeed.txt"))
                 {
                     JsonSerializer serializer = new JsonSerializer();
                     using (var jw = new JsonTextWriter(file))
@@ -48,10 +35,33 @@ namespace Logic
             }
         }
 
+        public static void SerializerCategories() //JSON-fil för kategorier
+        {
+
+            List<Category> categories = new List<Category>();
+
+            try
+            {
+                using (StreamWriter file = File.CreateText(@"C:\podFeeds\categories.txt"))
+                {
+                    JsonSerializer serializer = new JsonSerializer();
+                    using (var jw = new JsonTextWriter(file))
+                    {
+                        serializer.Formatting = Formatting.Indented;
+                        serializer.Serialize(jw, categories);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
 
 
 
-        
+
+
         public List<Podcast> DeserializeJSON() //Metoden ej testad.
         {
             try

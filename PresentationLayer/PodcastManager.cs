@@ -20,6 +20,7 @@ namespace PresentationLayer
         public Form1()
         {
             InitializeComponent();
+
         }
 
         public string TextBoxValue
@@ -57,7 +58,14 @@ namespace PresentationLayer
 
         private void updatePodcastBtn_Click(object sender, EventArgs e)
         {
-            SerializerService.SerializerJSON();
+            SerializerService.SerializerPodcastfeed();
+        }
+
+        private void newCategoryBtn_Click(object sender, EventArgs e)
+        {
+            String input = categoryInput.ToString();
+            EntityHandler.CreateNewCategory(input);
+            categoryInput.Clear();
         }
     }
 

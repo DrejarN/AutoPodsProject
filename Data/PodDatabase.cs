@@ -8,7 +8,7 @@ namespace Data
 {
     public class PodDatabase
     {
-        public List<Podcast> Porcasts { get; set; }
+        public List<Podcast> Podcasts { get; set; }
         public List<Category> Categories { get; set; }
     }
           
