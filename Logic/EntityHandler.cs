@@ -14,10 +14,19 @@ namespace Logic
         {
             try
             {
+                List<Object> categories = new List<Object>();
+                categories = SerializerService.Deserialize(@"C:\podFeeds\categories");
+                Category category = new Category(name);
+                categories.Add(name);
+                SerializerService.Serialize(@"C:\podFeeds\categories", categories);
+
+
+                /*
                 List<Category> categories = new List<Category>();
                 Category category = new Category(name);
                 categories.Add(category);
                 SerializerService.SerializerCategories(categories);
+                */
 
             } catch (Exception ex)
             {

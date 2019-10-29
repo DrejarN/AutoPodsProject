@@ -63,7 +63,7 @@ namespace PresentationLayer
 
         private void newCategoryBtn_Click(object sender, EventArgs e)
         {
-            String input = categoryInput.ToString();
+            String input = categoryInput.Text;
             EntityHandler.CreateNewCategory(input);
             categoryInput.Clear();
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,57 @@ namespace Logic
 {
     public class SerializerService
     {
+
+        private static JsonSerializer CreateSerializer()
+        {
+            return new JsonSerializer
+            {
+                TypeNameHandling = TypeNameHandling.All
+            };
+        }
+
+        //Generisk serializer, deserializer
+
+        public static void Serialize(string filename, List<Object> list)
+        {
+            try
+            {
+                var serializer = CreateSerializer();
+                using (var sw = new StreamWriter(filename))
+                {
+                    using (var jw = new JsonTextWriter(sw))
+                    {
+                        serializer.Formatting = Formatting.Indented;
+                        serializer.Serialize(jw, list);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception(filename);
+            }
+        }
+
+        public static List<Object> Deserialize(string filename)
+        {
+            try
+            {
+                var serializer = CreateSerializer();
+                using (var sr = new StreamReader(filename))
+                {
+                    using (var jr = new JsonTextReader(sr))
+                    {
+                        var list = serializer.Deserialize<List<Object>>(jr);
+                        return list;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception(filename);
+            }
+        }
+
 
 
         public static void SerializerPodcastfeed() //JSON-fil för Podcasts
