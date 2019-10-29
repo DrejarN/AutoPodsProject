@@ -12,6 +12,7 @@ namespace Logic
     public class SerializerService
     {
 
+
         public static void SerializerPodcastfeed() //JSON-fil för Podcasts
         {
 
@@ -35,11 +36,8 @@ namespace Logic
             }
         }
 
-        public static void SerializerCategories() //JSON-fil för kategorier
+        public static void SerializerCategories(List<Category> categories) //JSON-fil för kategorier
         {
-
-            List<Category> categories = new List<Category>();
-
             try
             {
                 using (StreamWriter file = File.CreateText(@"C:\podFeeds\categories.txt"))

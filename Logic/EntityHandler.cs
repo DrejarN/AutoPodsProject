@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace Logic
                 List<Category> categories = new List<Category>();
                 Category category = new Category(name);
                 categories.Add(category);
-                SerializerService.SerializerCategories();
+                SerializerService.SerializerCategories(categories);
 
             } catch (Exception ex)
             {

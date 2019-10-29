@@ -19,9 +19,9 @@ namespace Logic
         public void FillPodcastFeed() //Fyller podfeeden med content ur nersparad JSON-fil.
         {
 
+
         }
 
-        //
         public void FillEpisodeListOnPodcastClick() //När man klickar på en podcast i podfeeden displayas alla avsnitt tillhörande Podcasten i avsnittlistan.
         {
 
