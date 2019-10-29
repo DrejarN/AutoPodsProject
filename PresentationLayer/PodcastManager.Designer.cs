@@ -203,6 +203,7 @@
             this.removeCategoryBtn.TabIndex = 14;
             this.removeCategoryBtn.Text = "Ta bort";
             this.removeCategoryBtn.UseVisualStyleBackColor = true;
+            this.removeCategoryBtn.Click += new System.EventHandler(this.removeCategoryBtn_Click);
             // 
             // addPodcastBtn
             // 
@@ -235,6 +236,7 @@
             this.removePodcastBtn.TabIndex = 17;
             this.removePodcastBtn.Text = "Ta bort";
             this.removePodcastBtn.UseVisualStyleBackColor = true;
+            this.removePodcastBtn.Click += new System.EventHandler(this.removePodcastBtn_Click);
             // 
             // episodeList
             // 

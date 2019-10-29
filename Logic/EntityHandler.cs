@@ -10,11 +10,13 @@ namespace Logic
 {
     public class EntityHandler
     {
-        public static void CreateNewCategory(string name)
+
+        SerializerService serialize = new SerializerService();
+        public void CreateNewCategory(string name)
         {
             try
             {
-                List<Object> categories = new List<Object>();
+               /* List<Object> categories = new List<Object>();
                 categories = SerializerService.Deserialize(@"C:\podFeeds\categories");
                 Category category = new Category(name);
                 categories.Add(name);
@@ -32,6 +34,23 @@ namespace Logic
             {
                 throw new Exception(ex + "Kunde ej skapa kategori");
             }
+        }
+
+        public void testMetod()
+        {
+            List<object> enlista = new List<object>();
+            Category category = new Category("Hejhopp");
+            enlista.Add(category);
+
+            serialize.Serialize(@"C:\podFeeds\categories", enlista);
+        }
+
+        public void testMetod2()
+        {
+            List<object> nylista = serialize.Deserialize(@"C:\podFeeds\categories");
+            Category category = new Category("Hejhoppv2");
+            nylista.Add(category);
+            serialize.Serialize(@"C:\podFeeds\categories", nylista);
         }
     }
 }

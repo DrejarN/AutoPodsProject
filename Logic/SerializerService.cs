@@ -11,9 +11,16 @@ using Newtonsoft.Json;
 namespace Logic
 {
     public class SerializerService
+        
     {
+        public List<object> List;
 
-        private static JsonSerializer CreateSerializer()
+        public SerializerService()
+        {
+            List = new List<object>();
+        }
+
+        private JsonSerializer CreateSerializer()
         {
             return new JsonSerializer
             {
@@ -23,7 +30,7 @@ namespace Logic
 
         //Generisk serializer, deserializer
 
-        public static void Serialize(string filename, List<Object> list)
+        public void Serialize(string filename, List<Object> Lists)
         {
             try
             {
@@ -33,7 +40,7 @@ namespace Logic
                     using (var jw = new JsonTextWriter(sw))
                     {
                         serializer.Formatting = Formatting.Indented;
-                        serializer.Serialize(jw, list);
+                        serializer.Serialize(jw, Lists);
                     }
                 }
             }
@@ -43,7 +50,7 @@ namespace Logic
             }
         }
 
-        public static List<Object> Deserialize(string filename)
+        public List<Object> Deserialize(string filename)
         {
             try
             {
@@ -65,7 +72,7 @@ namespace Logic
 
 
 
-        public static void SerializerPodcastfeed() //JSON-fil för Podcasts
+       /* public static void SerializerPodcastfeed() //JSON-fil för Podcasts
         {
 
             List<Podcast> podcasts = PodcastHandler.GetPodcastFeed();
@@ -87,51 +94,6 @@ namespace Logic
                 throw new Exception();
             }
         }
-
-        public static void SerializerCategories(List<Category> categories) //JSON-fil för kategorier
-        {
-            try
-            {
-                using (StreamWriter file = File.CreateText(@"C:\podFeeds\categories.txt"))
-                {
-                    JsonSerializer serializer = new JsonSerializer();
-                    using (var jw = new JsonTextWriter(file))
-                    {
-                        serializer.Formatting = Formatting.Indented;
-                        serializer.Serialize(jw, categories);
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                throw new Exception();
-            }
-        }
-
-
-
-
-
-        public List<Podcast> DeserializeJSON() //Metoden ej testad.
-        {
-            try
-            {
-                JsonSerializer serializer = new JsonSerializer();
-                //var serializer = CreateSerializer();
-                using (var sr = new StreamReader(@"C:\podFeeds\path.txt"))
-                {
-                    using (var jr = new JsonTextReader(sr))
-                    {
-                        var list = serializer.Deserialize<List<Podcast>>(jr);
-                        return list;
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                throw new Exception();
-            }
-        }
-        
+        */    
     }
 }
