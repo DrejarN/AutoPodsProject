@@ -65,8 +65,6 @@ namespace Logic
             }
         }
 
-
-
        /* public static void SerializerPodcastfeed() //JSON-fil för Podcasts
         {
 
