@@ -48,6 +48,7 @@ namespace PresentationLayer
         private void AddPodcastBtn_Click(object sender, EventArgs e)
         {
             episodeDesc.AppendText(PodcastHandler.GetPodcastFeed().ToString());
+
         }
 
         private void UpdatePodcastBtn_Click(object sender, EventArgs e)
@@ -60,6 +61,7 @@ namespace PresentationLayer
             String input = categoryInput.Text;
             eHandler.AddNewCategoryToList(input);
             categoryInput.Clear();
+            CategoryList.DataSource = pHandler.FillCategoryList();
         }
 
         private void RemovePodcastBtn_Click(object sender, EventArgs e)
@@ -70,6 +72,7 @@ namespace PresentationLayer
         private void RemoveCategoryBtn_Click(object sender, EventArgs e)
         {
             eHandler.RemoveCategoryFromList(CategoryList.SelectedItem.ToString());
+            CategoryList.DataSource = pHandler.FillCategoryList();
         }
 
         private void categoryList_SelectedIndexChanged(object sender, EventArgs e)
