@@ -22,8 +22,7 @@ namespace PresentationLayer
         public Form1()
         {
             InitializeComponent();
-            //var header1 = categoryList.Columns.Add("Categories", -2, HorizontalAlignment.Left);
-            //FillPodcastFeed();
+            CategoryList.DataSource = pHandler.FillCategoryList();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -70,7 +69,7 @@ namespace PresentationLayer
 
         private void RemoveCategoryBtn_Click(object sender, EventArgs e)
         {
-            eHandler.testMetod2();
+            eHandler.RemoveCategoryFromList(CategoryList.SelectedItem.ToString());
         }
 
         private void categoryList_SelectedIndexChanged(object sender, EventArgs e)
@@ -80,7 +79,7 @@ namespace PresentationLayer
 
         private void saveCategoryBtn_Click(object sender, EventArgs e)
         {
-            listBox1.DataSource = pHandler.FillCategoryList();
+           
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)

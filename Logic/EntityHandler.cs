@@ -24,21 +24,29 @@ namespace Logic
 
         public void AddNewCategoryToList(string newCategory)
         {
-
             if (IfFileExists(@"C:\podFeeds\categories.txt"))
             {
-                List<object> categoryList = serializer.Deserialize(@"C:\podFeeds\categories.txt");
+                List<Category> categoryList = serializer.Deserialize<Category>(@"C:\podFeeds\categories.txt");
                 Category category = new Category(newCategory);
                 categoryList.Add(category);
                 serializer.Serialize(@"C:\podFeeds\categories.txt", categoryList);
             } else
             {
-                List<object> categoryList = new List<object>();
+                List<Category> categoryList = new List<Category>();
                 Category category = new Category(newCategory);
                 categoryList.Add(category);
                 serializer.Serialize(@"C:\podFeeds\categories.txt", categoryList);
             }
         }
+
+        public void RemoveCategoryFromList(string categoryName) 
+        {
+            List<Category> categoryList = serializer.Deserialize<Category>(@"C:\podFeeds\categories.txt");
+            var namn = categoryList.FirstOrDefault(x => x.CategoryName == categoryName);
+            categoryList.Remove(namn);
+            serializer.Serialize(@"C:\podFeeds\categories.txt", categoryList);
+        }
+
         public void CreateNewCategory(string name)
         {
             try
@@ -74,7 +82,7 @@ namespace Logic
 
         public void testMetod2()
         {
-            List<object> nylista = serializer.Deserialize(@"C:\podFeeds\categories");
+            List<Category> nylista = serializer.Deserialize<Category>(@"C:\podFeeds\categories");
             Category category = new Category("Hejhoppv2");
             nylista.Add(category);
             serializer.Serialize(@"C:\podFeeds\categories.txt", nylista);

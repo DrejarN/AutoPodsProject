@@ -13,13 +13,8 @@ namespace Logic
     public class SerializerService
         
     {
-        public List<object> List;
-
-        public SerializerService()
-        {
-            List = new List<object>();
+        public SerializerService() {
         }
-
         private JsonSerializer CreateSerializer()
         {
             return new JsonSerializer
@@ -30,7 +25,7 @@ namespace Logic
 
         //Generisk serializer, deserializer
 
-        public void Serialize(string filename, List<Object> Lists)
+        public void Serialize<T>(string filename, List<T> Lists)
         {
             try
             {
@@ -50,7 +45,7 @@ namespace Logic
             }
         }
 
-        public List<Object> Deserialize(string filename)
+        public List<T> Deserialize<T>(string filename)
         {
             try
             {
@@ -59,14 +54,14 @@ namespace Logic
                 {
                     using (var jr = new JsonTextReader(sr))
                     {
-                        var list = serializer.Deserialize<List<Object>>(jr);
+                        var list = serializer.Deserialize<List<T>>(jr);
                         return list;
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception(filename);
+                throw new Exception(ex.Message);
             }
         }
 

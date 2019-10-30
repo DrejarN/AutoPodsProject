@@ -18,7 +18,7 @@ namespace Logic
             List<string> CategoryNameList = new List<string>();
             if (eHandler.IfFileExists(@"C:\podFeeds\categories.txt"))
             {
-                List<object> categories = serializer.Deserialize(@"C:\podFeeds\categories.txt");
+                List<Category> categories = serializer.Deserialize<Category>(@"C:\podFeeds\categories.txt");
                 foreach (Category category in categories)
                 {
                     CategoryNameList.Add(category.CategoryName);
