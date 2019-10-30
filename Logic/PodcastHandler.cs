@@ -13,13 +13,20 @@ namespace Logic
         EntityHandler eHandler = new EntityHandler();
         //On start-up
 
-        public void FillCategoryList() //Fyller hela kategorilistan från en JSON fil där de är sparade?
+        public List<string> FillCategoryList() //Fyller hela kategorilistan från en JSON fil där de är sparade?
         {
-            if (eHandler.IfFileExists(@"C:\podFeeds\categories"))
+            List<string> CategoryNameList = new List<string>();
+            if (eHandler.IfFileExists(@"C:\podFeeds\categories.txt"))
             {
-                List<object> categoryList = serializer.Deserialize(@"C:\podFeeds\categories");
+                List<object> categories = serializer.Deserialize(@"C:\podFeeds\categories.txt");
+                foreach (Category category in categories)
+                {
+                    CategoryNameList.Add(category.CategoryName);
+                }
             }
+            return CategoryNameList;
         }
+
 
         public void FillPodcastFeed() //Fyller podfeeden med content ur nersparad JSON-fil.
         {

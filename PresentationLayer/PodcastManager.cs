@@ -22,24 +22,9 @@ namespace PresentationLayer
         public Form1()
         {
             InitializeComponent();
-            FillCategoryList();
+            //var header1 = categoryList.Columns.Add("Categories", -2, HorizontalAlignment.Left);
             //FillPodcastFeed();
         }
-
-        public void FillCategoryList() //Fyller hela kategorilistan från en JSON fil där de är sparade?
-        {
-            if (eHandler.IfFileExists(@"C:\podFeeds\categories"))
-            {
-                List<object> categories = serializer.Deserialize(@"C:\podFeeds\categories");
-                foreach (object category in categories)
-                {
-
-                    //string stringedCategory = category.CategoryName;
-                    categoryList.Items.Add(stringedCategory);
-                }
-            }
-        }
-
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -86,6 +71,21 @@ namespace PresentationLayer
         private void RemoveCategoryBtn_Click(object sender, EventArgs e)
         {
             eHandler.testMetod2();
+        }
+
+        private void categoryList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void saveCategoryBtn_Click(object sender, EventArgs e)
+        {
+            listBox1.DataSource = pHandler.FillCategoryList();
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 

@@ -33,7 +33,6 @@
             this.Namn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Frekvens = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Kategori = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.categoryList = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
             this.categoryInput = new System.Windows.Forms.TextBox();
             this.newCategoryBtn = new System.Windows.Forms.Button();
@@ -51,6 +50,7 @@
             this.episodeList = new System.Windows.Forms.ListView();
             this.label5 = new System.Windows.Forms.Label();
             this.episodeDesc = new System.Windows.Forms.TextBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // podcastList
@@ -88,17 +88,6 @@
             // 
             this.Kategori.Text = "Kategori";
             this.Kategori.Width = 121;
-            // 
-            // categoryList
-            // 
-            this.categoryList.HideSelection = false;
-            this.categoryList.Location = new System.Drawing.Point(412, 28);
-            this.categoryList.Margin = new System.Windows.Forms.Padding(2);
-            this.categoryList.Name = "categoryList";
-            this.categoryList.Size = new System.Drawing.Size(210, 106);
-            this.categoryList.TabIndex = 1;
-            this.categoryList.UseCompatibleStateImageBehavior = false;
-            this.categoryList.View = System.Windows.Forms.View.Details;
             // 
             // label1
             // 
@@ -194,6 +183,7 @@
             this.saveCategoryBtn.TabIndex = 13;
             this.saveCategoryBtn.Text = "Spara";
             this.saveCategoryBtn.UseVisualStyleBackColor = true;
+            this.saveCategoryBtn.Click += new System.EventHandler(this.saveCategoryBtn_Click);
             // 
             // removeCategoryBtn
             // 
@@ -270,11 +260,21 @@
             this.episodeDesc.TabIndex = 20;
             this.episodeDesc.TextChanged += new System.EventHandler(this.EpisodeDesc_TextChanged);
             // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(482, 28);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(120, 95);
+            this.listBox1.TabIndex = 21;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(655, 414);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.episodeDesc);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.episodeList);
@@ -292,7 +292,6 @@
             this.Controls.Add(this.newCategoryBtn);
             this.Controls.Add(this.categoryInput);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.categoryList);
             this.Controls.Add(this.podcastList);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
@@ -305,7 +304,6 @@
         #endregion
 
         private System.Windows.Forms.ListView podcastList;
-        private System.Windows.Forms.ListView categoryList;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox categoryInput;
         private System.Windows.Forms.Button newCategoryBtn;
@@ -327,6 +325,7 @@
         private System.Windows.Forms.ColumnHeader Namn;
         private System.Windows.Forms.ColumnHeader Frekvens;
         private System.Windows.Forms.ColumnHeader Kategori;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }
 

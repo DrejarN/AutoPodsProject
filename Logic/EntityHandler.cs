@@ -79,5 +79,6 @@ namespace Logic
             nylista.Add(category);
             serializer.Serialize(@"C:\podFeeds\categories.txt", nylista);
         }
+
     }
 }
