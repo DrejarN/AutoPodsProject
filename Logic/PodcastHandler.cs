@@ -9,11 +9,16 @@ namespace Logic
 {
     public class PodcastHandler
     {
+        SerializerService serializer = new SerializerService();
+        EntityHandler eHandler = new EntityHandler();
         //On start-up
 
         public void FillCategoryList() //Fyller hela kategorilistan från en JSON fil där de är sparade?
         {
-
+            if (eHandler.IfFileExists(@"C:\podFeeds\categories"))
+            {
+                List<object> categoryList = serializer.Deserialize(@"C:\podFeeds\categories");
+            }
         }
 
         public void FillPodcastFeed() //Fyller podfeeden med content ur nersparad JSON-fil.

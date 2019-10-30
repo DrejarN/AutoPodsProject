@@ -8,7 +8,7 @@ namespace Data
 {
     public class Category
     {
-        public string CategoryName;
+        public string CategoryName { get; set; }
         
         public Category(string name)
         {

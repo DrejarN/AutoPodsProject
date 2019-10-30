@@ -17,19 +17,29 @@ namespace PresentationLayer
     public partial class Form1 : Form
     {
         EntityHandler eHandler = new EntityHandler();
+        PodcastHandler pHandler = new PodcastHandler();
+        SerializerService serializer = new SerializerService();
         public Form1()
         {
             InitializeComponent();
-
+            FillCategoryList();
+            //FillPodcastFeed();
         }
 
-        public string TextBoxValue
+        public void FillCategoryList() //Fyller hela kategorilistan från en JSON fil där de är sparade?
         {
-            set
+            if (eHandler.IfFileExists(@"C:\podFeeds\categories"))
             {
-                episodeDesc.Text = value;
+                List<object> categories = serializer.Deserialize(@"C:\podFeeds\categories");
+                foreach (object category in categories)
+                {
+
+                    //string stringedCategory = category.CategoryName;
+                    categoryList.Items.Add(stringedCategory);
+                }
             }
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -46,34 +56,34 @@ namespace PresentationLayer
 
         }
 
-        private void episodeDesc_TextChanged(object sender, EventArgs e)
+        private void EpisodeDesc_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void addPodcastBtn_Click(object sender, EventArgs e)
+        private void AddPodcastBtn_Click(object sender, EventArgs e)
         {
             episodeDesc.AppendText(PodcastHandler.GetPodcastFeed().ToString());
         }
 
-        private void updatePodcastBtn_Click(object sender, EventArgs e)
+        private void UpdatePodcastBtn_Click(object sender, EventArgs e)
         {
-            SerializerService.SerializerPodcastfeed();
+            //SerializerService.SerializerPodcastfeed();
         }
 
-        private void newCategoryBtn_Click(object sender, EventArgs e)
+        private void NewCategoryBtn_Click(object sender, EventArgs e)
         {
             String input = categoryInput.Text;
-           // EntityHandler.CreateNewCategory(input);
+            eHandler.AddNewCategoryToList(input);
             categoryInput.Clear();
         }
 
-        private void removePodcastBtn_Click(object sender, EventArgs e)
+        private void RemovePodcastBtn_Click(object sender, EventArgs e)
         {
             eHandler.testMetod();
         }
 
-        private void removeCategoryBtn_Click(object sender, EventArgs e)
+        private void RemoveCategoryBtn_Click(object sender, EventArgs e)
         {
             eHandler.testMetod2();
         }

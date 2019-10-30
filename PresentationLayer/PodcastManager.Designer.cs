@@ -98,6 +98,7 @@
             this.categoryList.Size = new System.Drawing.Size(210, 106);
             this.categoryList.TabIndex = 1;
             this.categoryList.UseCompatibleStateImageBehavior = false;
+            this.categoryList.View = System.Windows.Forms.View.Details;
             // 
             // label1
             // 
@@ -126,7 +127,7 @@
             this.newCategoryBtn.TabIndex = 4;
             this.newCategoryBtn.Text = "Ny";
             this.newCategoryBtn.UseVisualStyleBackColor = true;
-            this.newCategoryBtn.Click += new System.EventHandler(this.newCategoryBtn_Click);
+            this.newCategoryBtn.Click += new System.EventHandler(this.NewCategoryBtn_Click);
             // 
             // label2
             // 
@@ -203,7 +204,7 @@
             this.removeCategoryBtn.TabIndex = 14;
             this.removeCategoryBtn.Text = "Ta bort";
             this.removeCategoryBtn.UseVisualStyleBackColor = true;
-            this.removeCategoryBtn.Click += new System.EventHandler(this.removeCategoryBtn_Click);
+            this.removeCategoryBtn.Click += new System.EventHandler(this.RemoveCategoryBtn_Click);
             // 
             // addPodcastBtn
             // 
@@ -214,7 +215,7 @@
             this.addPodcastBtn.TabIndex = 15;
             this.addPodcastBtn.Text = "Lägg till";
             this.addPodcastBtn.UseVisualStyleBackColor = true;
-            this.addPodcastBtn.Click += new System.EventHandler(this.addPodcastBtn_Click);
+            this.addPodcastBtn.Click += new System.EventHandler(this.AddPodcastBtn_Click);
             // 
             // updatePodcastBtn
             // 
@@ -225,7 +226,7 @@
             this.updatePodcastBtn.TabIndex = 16;
             this.updatePodcastBtn.Text = "Spara";
             this.updatePodcastBtn.UseVisualStyleBackColor = true;
-            this.updatePodcastBtn.Click += new System.EventHandler(this.updatePodcastBtn_Click);
+            this.updatePodcastBtn.Click += new System.EventHandler(this.UpdatePodcastBtn_Click);
             // 
             // removePodcastBtn
             // 
@@ -236,7 +237,7 @@
             this.removePodcastBtn.TabIndex = 17;
             this.removePodcastBtn.Text = "Ta bort";
             this.removePodcastBtn.UseVisualStyleBackColor = true;
-            this.removePodcastBtn.Click += new System.EventHandler(this.removePodcastBtn_Click);
+            this.removePodcastBtn.Click += new System.EventHandler(this.RemovePodcastBtn_Click);
             // 
             // episodeList
             // 
@@ -267,7 +268,7 @@
             this.episodeDesc.Name = "episodeDesc";
             this.episodeDesc.Size = new System.Drawing.Size(218, 144);
             this.episodeDesc.TabIndex = 20;
-            this.episodeDesc.TextChanged += new System.EventHandler(this.episodeDesc_TextChanged);
+            this.episodeDesc.TextChanged += new System.EventHandler(this.EpisodeDesc_TextChanged);
             // 
             // Form1
             // 

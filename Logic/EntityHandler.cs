@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,33 @@ namespace Logic
     public class EntityHandler
     {
 
-        SerializerService serialize = new SerializerService();
+        SerializerService serializer = new SerializerService();
+        public bool IfFileExists(string filename)
+        {
+            bool fileExists = false;
+            if(File.Exists(filename)) {
+                fileExists = true;
+            }
+            return fileExists;
+        }
+
+        public void AddNewCategoryToList(string newCategory)
+        {
+
+            if (IfFileExists(@"C:\podFeeds\categories.txt"))
+            {
+                List<object> categoryList = serializer.Deserialize(@"C:\podFeeds\categories.txt");
+                Category category = new Category(newCategory);
+                categoryList.Add(category);
+                serializer.Serialize(@"C:\podFeeds\categories.txt", categoryList);
+            } else
+            {
+                List<object> categoryList = new List<object>();
+                Category category = new Category(newCategory);
+                categoryList.Add(category);
+                serializer.Serialize(@"C:\podFeeds\categories.txt", categoryList);
+            }
+        }
         public void CreateNewCategory(string name)
         {
             try
@@ -42,15 +69,15 @@ namespace Logic
             Category category = new Category("Hejhopp");
             enlista.Add(category);
 
-            serialize.Serialize(@"C:\podFeeds\categories", enlista);
+            serializer.Serialize(@"C:\podFeeds\categories.txt", enlista);
         }
 
         public void testMetod2()
         {
-            List<object> nylista = serialize.Deserialize(@"C:\podFeeds\categories");
+            List<object> nylista = serializer.Deserialize(@"C:\podFeeds\categories");
             Category category = new Category("Hejhoppv2");
             nylista.Add(category);
-            serialize.Serialize(@"C:\podFeeds\categories", nylista);
+            serializer.Serialize(@"C:\podFeeds\categories.txt", nylista);
         }
     }
 }
