@@ -139,6 +139,7 @@
             this.categoryCb.Name = "categoryCb";
             this.categoryCb.Size = new System.Drawing.Size(92, 21);
             this.categoryCb.TabIndex = 12;
+            this.categoryCb.SelectedIndexChanged += new System.EventHandler(this.categoryCb_SelectedIndexChanged);
             // 
             // saveCategoryBtn
             // 

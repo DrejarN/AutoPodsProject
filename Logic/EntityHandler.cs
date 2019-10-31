@@ -71,6 +71,17 @@ namespace Logic
             }
         }
 
+        public List<string> fillCategoryDropBox()
+        {
+            List<Category> categoryList = serializer.Deserialize<Category>(@"C:\podFeeds\categories.txt");
+            List<string> categoryAsString = new List<string>();
+            foreach(Category category in categoryList)
+            {
+                categoryAsString.Add(category.CategoryName);
+            }
+            return categoryAsString;
+        }
+
         public void testMetod()
         {
             List<object> enlista = new List<object>();

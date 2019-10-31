@@ -23,6 +23,7 @@ namespace PresentationLayer
         {
             InitializeComponent();
             CategoryList.DataSource = pHandler.FillCategoryList();
+            categoryCb.DataSource = eHandler.fillCategoryDropBox();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -116,6 +117,11 @@ namespace PresentationLayer
             PodcastFeed.Items.Add(new ListViewItem(new[] { "87", "Livets gåtor", "Var 10:e minut", "Mat" }));
             PodcastFeed.Items.Add(new ListViewItem(new[] { "8", "Hejbaberuba", "Var 10:e minut", "WoW" }));
             */
+        }
+
+        private void categoryCb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 
