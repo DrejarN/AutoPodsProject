@@ -36,13 +36,10 @@ namespace Logic
 
             foreach(Podcast podcast in podcasts)
             {
-                xList.Add("1");
+                xList.Add(podcast.episodeCount.ToString());
                 xList.Add(podcast.Title);
                 xList.Add("Var 10:e minut");
-                foreach (Category category in categories)
-                {
-                    xList.Add(category.CategoryName);
-                }
+                xList.Add("Exempel kategori");
             }
 
             return xList;
@@ -77,9 +74,10 @@ namespace Logic
                     Episode oneEpisode = new Episode(episodeTitle, episodeDesc, x);
                     episodeList.Add(oneEpisode);
                     x++;
-
                 }
+                nyPodd.episodeCount = x;
                 nyPodd.Episodes = episodeList;
+                
                 Podcastlista.Add(nyPodd);
                 return Podcastlista;
             }
