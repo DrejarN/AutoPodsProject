@@ -50,20 +50,7 @@ namespace PresentationLayer
 
         private void AddPodcastBtn_Click(object sender, EventArgs e)
         {
-            if (eHandler.IfFileExists(@"C:\podFeeds\poddar.txt"))
-            {
-                List<Podcast> oldPodcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
-                Podcast newPodcast = pHandler.GetPodcastFeed(urlInput.Text, categoryCb.Text, frequencyCb.Text);
-                oldPodcasts.Add(newPodcast);
-                serializer.Serialize<Podcast>(@"C:\podFeeds\poddar.txt", oldPodcasts);
-            }
-            else
-            {
-                List<Podcast> newPodList = new List<Podcast>();
-                Podcast newPodcast = pHandler.GetPodcastFeed(urlInput.Text, categoryCb.Text, frequencyCb.Text);
-                newPodList.Add(newPodcast);
-                serializer.Serialize<Podcast>(@"C:\podFeeds\poddar.txt", newPodList);
-            }
+            pHandler.addPodcast(urlInput.Text, categoryCb.Text, frequencyCb.Text);
         }
 
         private void UpdatePodcastBtn_Click(object sender, EventArgs e)
@@ -81,7 +68,7 @@ namespace PresentationLayer
 
         private void RemovePodcastBtn_Click(object sender, EventArgs e)
         {
-            eHandler.testMetod();
+             eHandler.RemovePodcastFromList("http://businesspodden.libsyn.com/rss");
         }
 
         private void RemoveCategoryBtn_Click(object sender, EventArgs e)

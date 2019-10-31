@@ -79,9 +79,9 @@ namespace Logic
                 nyPodd.UpdateFrequency = timer;
                 foreach (SyndicationItem item in feed.Items)
                 {
-                    string episodeTitle = item.Title.Text;
-                    string episodeDesc = item.Summary.Text;
-                    Episode oneEpisode = new Episode(episodeTitle, episodeDesc, x);
+                    string epTitle = item.Title.Text;
+                    string eDesc = item.Summary.Text;
+                    Episode oneEpisode = new Episode(epTitle, eDesc, x);
                     episodeList.Add(oneEpisode);
                     x++;
                 }
@@ -92,6 +92,22 @@ namespace Logic
             }
         }
 
+        public void addPodcast(string url, string selectedCategory, string timer)
+        {
+            Podcast newPodcast = GetPodcastFeed(url, selectedCategory, timer);
+            if (eHandler.IfFileExists(@"C:\podFeeds\poddar.txt"))
+            {
+                List<Podcast> oldPodcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
+                oldPodcasts.Add(newPodcast);
+                serializer.Serialize<Podcast>(@"C:\podFeeds\poddar.txt", oldPodcasts);
+            }
+            else
+            {
+                List<Podcast> newPodList = new List<Podcast>();
+                newPodList.Add(newPodcast);
+                serializer.Serialize<Podcast>(@"C:\podFeeds\poddar.txt", newPodList);
+            }
+        }
         public List<string> testMetod()
         {
             List<string> yaho = new List<string>();
