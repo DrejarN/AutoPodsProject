@@ -68,7 +68,7 @@ namespace PresentationLayer
 
         private void RemovePodcastBtn_Click(object sender, EventArgs e)
         {
-            eHandler.testMetod();
+             eHandler.RemovePodcastFromList("http://businesspodden.libsyn.com/rss");
         }
 
         private void RemoveCategoryBtn_Click(object sender, EventArgs e)

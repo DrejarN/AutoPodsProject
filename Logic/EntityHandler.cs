@@ -47,6 +47,21 @@ namespace Logic
             serializer.Serialize(@"C:\podFeeds\categories.txt", categoryList);
         }
 
+        public void RemovePodcastFromList(string url)
+        {
+            try
+            {
+                List<Podcast> podcastList = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
+                Podcast podcastRemoved = podcastList.FirstOrDefault(a => a.Url == url);
+                podcastList.Remove(podcastRemoved);
+                serializer.Serialize(@"C:\podFeeds\poddar.txt", podcastList);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+        }
         public void CreateNewCategory(string name)
         {
             try

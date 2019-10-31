@@ -71,7 +71,9 @@ namespace Logic
                 nyPodd.UpdateFrequency = timer;
                 foreach (SyndicationItem item in feed.Items)
                 {
-                    Episode oneEpisode = new Episode(item.Title.Text, item.Summary.Text, x);
+                    string epTitle = item.Title.Text;
+                    string eDesc = item.Summary.Text;
+                    Episode oneEpisode = new Episode(epTitle, eDesc, x);
                     episodeList.Add(oneEpisode);
                     x++;
                 }
