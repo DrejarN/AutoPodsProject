@@ -249,9 +249,10 @@
             // 
             // PodcastFeed
             // 
+            this.PodcastFeed.Activation = System.Windows.Forms.ItemActivation.OneClick;
             this.PodcastFeed.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Avsnitt,
             this.Namn,
+            this.Avsnitt,
             this.Frekvens,
             this.Kategori});
             this.PodcastFeed.HideSelection = false;

@@ -104,22 +104,13 @@ namespace PresentationLayer
 
         private void TestBtn_Click(object sender, EventArgs e)
         {
-            if(pHandler.CheckPodcasts())
+            List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
+            foreach(Podcast pod in podcasts)
             {
-                var result = pHandler.FillPodcastFeed();
-                string[] listToArray = result.ToArray();
-
-                string[] row1 = { listToArray[1], listToArray[2], listToArray[3] };
-                PodcastFeed.Items.Add(listToArray[0]).SubItems.AddRange(row1);
-
+                string[] listToArray = { pod.episodeCount.ToString(), pod.Title, pod.UpdateFrequency, pod.categories.CategoryName };
+                string[] row1 = { listToArray[0], listToArray[2], listToArray[3] };
+                PodcastFeed.Items.Add(listToArray[1]).SubItems.AddRange(row1);
             }
-          
-
-
-            //List<string> list = pHandler.FillPodcastFeed();
-
-
-
         }
 
         private void categoryCb_SelectedIndexChanged(object sender, EventArgs e)
