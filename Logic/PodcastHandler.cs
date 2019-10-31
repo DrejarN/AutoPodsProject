@@ -90,11 +90,5 @@ namespace Logic
             List<Podcast> podcast = GetPodcastFeed();
             serializer.Serialize<Podcast>(@"C:\podFeeds\poddar.txt", podcast);
         }
-
-        public void TestMethod()
-        {
-            List<Podcast> podcast = GetPodcastFeed();
-            serializer.Serialize<Podcast>(@"C:\podFeeds\poddar.txt", podcast);
-        }
     }
 }
