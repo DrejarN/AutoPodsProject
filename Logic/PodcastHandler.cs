@@ -55,18 +55,20 @@ namespace Logic
 
         }
 
-        public static List<Podcast> GetPodcastFeed()   
+        public Podcast GetPodcastFeed(string url, string selectedCategory, string timer)   
         {
+            Category selectedCategoryObject = new Category(selectedCategory);
             int x = 1;
             List<Episode> episodeList = new List<Episode>();
-            List<Podcast> Podcastlista = new List<Podcast>();
-            string rssFeedurl = "http://borssnack.libsyn.com/rss";
+            Podcast nyPodd = new Podcast();
+            string rssFeedurl = url;
             using (XmlReader reader = XmlReader.Create(rssFeedurl))
             {
                 SyndicationFeed feed = SyndicationFeed.Load(reader);
-                Podcast nyPodd = new Podcast();
                 nyPodd.Title += feed.Title.Text;
                 nyPodd.Url += feed.Links[0].Uri.OriginalString; //funkar
+                nyPodd.categories = selectedCategoryObject;
+                nyPodd.UpdateFrequency = timer;
                 foreach (SyndicationItem item in feed.Items)
                 {
                     string episodeTitle = item.Title.Text;
@@ -77,16 +79,23 @@ namespace Logic
                 }
                 nyPodd.episodeCount = x;
                 nyPodd.Episodes = episodeList;
-                
-                Podcastlista.Add(nyPodd);
-                return Podcastlista;
+               
+                return nyPodd;
             }
         }
 
-        public void TestMethod()
+        public List<string> testMetod()
         {
-            List<Podcast> podcast = GetPodcastFeed();
-            serializer.Serialize<Podcast>(@"C:\podFeeds\poddar.txt", podcast);
+            List<string> yaho = new List<string>();
+            yaho.Add("10");
+            yaho.Add("60");
+            return yaho;
         }
+
+        //public void TestMethod()
+        //{
+        //    List<Podcast> podcast = GetPodcastFeed();
+        //    serializer.Serialize<Podcast>(@"C:\podFeeds\poddar.txt", podcast);
+        //}
     }
 }

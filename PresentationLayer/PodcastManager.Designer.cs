@@ -130,6 +130,7 @@
             this.frequencyCb.Name = "frequencyCb";
             this.frequencyCb.Size = new System.Drawing.Size(92, 21);
             this.frequencyCb.TabIndex = 11;
+            this.frequencyCb.SelectedIndexChanged += new System.EventHandler(this.frequencyCb_SelectedIndexChanged);
             // 
             // categoryCb
             // 

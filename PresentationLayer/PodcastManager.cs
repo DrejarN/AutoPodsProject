@@ -17,7 +17,6 @@ namespace PresentationLayer
     public partial class Form1 : Form
     {
 
-        Podcast podcast = new Podcast("dsfsdf", "fdsofsdf", "Humor");
         EntityHandler eHandler = new EntityHandler();
         PodcastHandler pHandler = new PodcastHandler();
         SerializerService serializer = new SerializerService();
@@ -26,6 +25,7 @@ namespace PresentationLayer
             InitializeComponent();
             CategoryList.DataSource = pHandler.FillCategoryList();
             categoryCb.DataSource = eHandler.fillCategoryDropBox();
+            frequencyCb.DataSource = pHandler.testMetod();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -50,13 +50,25 @@ namespace PresentationLayer
 
         private void AddPodcastBtn_Click(object sender, EventArgs e)
         {
-            episodeDesc.AppendText(PodcastHandler.GetPodcastFeed().ToString());
-
+            if (eHandler.IfFileExists(@"C:\podFeeds\poddar.txt"))
+            {
+                List<Podcast> oldPodcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
+                Podcast newPodcast = pHandler.GetPodcastFeed(urlInput.Text, categoryCb.Text, frequencyCb.Text);
+                oldPodcasts.Add(newPodcast);
+                serializer.Serialize<Podcast>(@"C:\podFeeds\poddar.txt", oldPodcasts);
+            }
+            else
+            {
+                List<Podcast> newPodList = new List<Podcast>();
+                Podcast newPodcast = pHandler.GetPodcastFeed(urlInput.Text, categoryCb.Text, frequencyCb.Text);
+                newPodList.Add(newPodcast);
+                serializer.Serialize<Podcast>(@"C:\podFeeds\poddar.txt", newPodList);
+            }
         }
 
         private void UpdatePodcastBtn_Click(object sender, EventArgs e)
         {
-            pHandler.TestMethod();
+           // pHandler.TestMethod();
         }
 
         private void NewCategoryBtn_Click(object sender, EventArgs e)
@@ -106,8 +118,8 @@ namespace PresentationLayer
         private void TestBtn_Click(object sender, EventArgs e)
         {
 
-            string[] row1 = { podcast.Title, podcast.Url, podcast.kategori };
-            PodcastFeed.Items.Add(podcast.episodeCount.ToString()).SubItems.AddRange(row1);
+//            string[] row1 = { podcast.Title, podcast.Url, podcast.kategori };
+  //          PodcastFeed.Items.Add(podcast.episodeCount.ToString()).SubItems.AddRange(row1);
 
 
             //List<string> list = pHandler.FillPodcastFeed();
@@ -117,6 +129,11 @@ namespace PresentationLayer
         }
 
         private void categoryCb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frequencyCb_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

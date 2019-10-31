@@ -13,15 +13,7 @@ namespace Data
         public Category categories { get; set; }
         public List<Episode> Episodes { get; set; }
         public int episodeCount { get; set; }
-        public int UpdateFrequency { get; set; }
-
-        public string kategori { get; set; }
-        public Podcast(string title, string url, string kategori)
-        {
-            Title = title;
-            Url = url;
-            this.kategori = kategori;
-        }
+        public string UpdateFrequency { get; set; }
         public Podcast(string title, string url, Category type)
         {
             Title = title;
