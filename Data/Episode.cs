@@ -7,14 +7,19 @@ using System.Threading.Tasks;
 namespace Data
 {
     public class Episode : Podcast
-    {
-        public int EpisodeLength { get; set; }
+    { 
         public string Name { get; set; }
+
+        public string Description { get; set; }
         public Episode(string title, string url, Category type, int episodeLength, string name) : base (title, url, type)
         {
-            EpisodeLength = episodeLength;
+           // EpisodeLength = episodeLength;
             Name = name;
         }
 
+        public Episode(string title)
+        {
+            this.Name = title;
+        }
     }
 }
