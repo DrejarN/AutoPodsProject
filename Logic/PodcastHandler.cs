@@ -30,19 +30,27 @@ namespace Logic
 
         public List<string> FillPodcastFeed() //Fyller podfeeden med content ur nersparad JSON-fil.
         {
-            List<Category> categories = serializer.Deserialize<Category>(@"C:\podFeeds\categories.txt");
-            List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
-            List<string> xList = new List<string>();
+                List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
+                List<string> xList = new List<string>();
 
-            foreach(Podcast podcast in podcasts)
+                foreach (Podcast podcast in podcasts)
+                {
+                    xList.Add(podcast.episodeCount.ToString());
+                    xList.Add(podcast.Title);
+                    xList.Add(podcast.UpdateFrequency);
+                    xList.Add(podcast.categories.CategoryName);
+                }
+                return xList;
+        }
+
+        public bool CheckPodcasts()
+        {
+            bool x = false;
+            if(eHandler.IfFileExists(@"C:\podFeeds\poddar.txt"))
             {
-                xList.Add(podcast.episodeCount.ToString());
-                xList.Add(podcast.Title);
-                xList.Add("Var 10:e minut");
-                xList.Add("Exempel kategori");
+                x = true;
             }
-
-            return xList;
+            return x;
         }
 
         public void FillEpisodeListOnPodcastClick() //När man klickar på en podcast i podfeeden displayas alla avsnitt tillhörande Podcasten i avsnittlistan.

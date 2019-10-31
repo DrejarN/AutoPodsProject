@@ -73,13 +73,23 @@ namespace Logic
 
         public List<string> fillCategoryDropBox()
         {
-            List<Category> categoryList = serializer.Deserialize<Category>(@"C:\podFeeds\categories.txt");
+            string hej = "finns ingen kategori";
             List<string> categoryAsString = new List<string>();
-            foreach(Category category in categoryList)
+
+            if (IfFileExists(@"C:\podFeeds\categories.txt")) { 
+            List<Category> categoryList = serializer.Deserialize<Category>(@"C:\podFeeds\categories.txt");
+            
+            foreach (Category category in categoryList)
             {
                 categoryAsString.Add(category.CategoryName);
             }
             return categoryAsString;
+
+        } else
+            {
+                categoryAsString.Add(hej);
+                return categoryAsString;
+            }
         }
 
         public void testMetod()

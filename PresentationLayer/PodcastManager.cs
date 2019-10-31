@@ -117,9 +117,16 @@ namespace PresentationLayer
 
         private void TestBtn_Click(object sender, EventArgs e)
         {
+            if(pHandler.CheckPodcasts())
+            {
+                var result = pHandler.FillPodcastFeed();
+                string[] listToArray = result.ToArray();
 
-//            string[] row1 = { podcast.Title, podcast.Url, podcast.kategori };
-  //          PodcastFeed.Items.Add(podcast.episodeCount.ToString()).SubItems.AddRange(row1);
+                string[] row1 = { listToArray[1], listToArray[2], listToArray[3] };
+                PodcastFeed.Items.Add(listToArray[0]).SubItems.AddRange(row1);
+
+            }
+          
 
 
             //List<string> list = pHandler.FillPodcastFeed();
