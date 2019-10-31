@@ -53,7 +53,7 @@ namespace PresentationLayer
 
         private void UpdatePodcastBtn_Click(object sender, EventArgs e)
         {
-            //SerializerService.SerializerPodcastfeed();
+            pHandler.TestMethod();
         }
 
         private void NewCategoryBtn_Click(object sender, EventArgs e)

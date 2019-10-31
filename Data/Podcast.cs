@@ -10,7 +10,6 @@ namespace Data
     {
         public string Title { get; set; }
         public string Url { get; set; }
-        public string Description { get; set; }
         public Category Type { get; set; }
         public List<Episode> Episodes { get; set; }
 
