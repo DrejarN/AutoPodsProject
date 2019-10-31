@@ -10,16 +10,15 @@ namespace Data
     {
         public string Title { get; set; }
         public string Url { get; set; }
-        public Category Type { get; set; }
+        public Category categories { get; set; }
         public List<Episode> Episodes { get; set; }
 
         public Podcast(string title, string url, Category type)
         {
             Title = title;
             Url = url;
-            Type = type;
+            this.categories = type;
         }
-
         public Podcast()
         {
         }

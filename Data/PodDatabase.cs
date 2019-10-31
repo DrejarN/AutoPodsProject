@@ -11,6 +11,5 @@ namespace Data
         public List<Podcast> Podcasts { get; set; }
         public List<Category> Categories { get; set; }
     }
-          
 
 }

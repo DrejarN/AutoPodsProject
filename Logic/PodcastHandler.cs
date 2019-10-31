@@ -46,27 +46,27 @@ namespace Logic
 
         public static List<Podcast> GetPodcastFeed()   
         {
+            int x = 1;
             List<Episode> episodeList = new List<Episode>();
             List<Podcast> Podcastlista = new List<Podcast>();
             string rssFeedurl = "http://borssnack.libsyn.com/rss";
             using (XmlReader reader = XmlReader.Create(rssFeedurl))
             {
                 SyndicationFeed feed = SyndicationFeed.Load(reader);
+                Podcast nyPodd = new Podcast();
+                nyPodd.Title += feed.Title.Text;
+                nyPodd.Url += feed.Links[0].Uri.OriginalString; //funkar
                 foreach (SyndicationItem item in feed.Items)
                 {
-                    Podcast nyPodd = new Podcast();
+                    string episodeTitle = item.Title.Text;
+                    string episodeDesc = item.Summary.Text;
+                    Episode oneEpisode = new Episode(episodeTitle, episodeDesc, x);
+                    episodeList.Add(oneEpisode);
+                    x++;
 
-                    foreach (Podcast episode in Podcastlista)
-                    {
-                        string episodeTitle = item.Title.Text;
-                        Episode oneEpisode = new Episode(episodeTitle);
-                        episodeList.Add(oneEpisode);
-                    }
-                    nyPodd.Title += item.Links;
-                    nyPodd.Url += item.Links[0].Uri.OriginalString; //funkar
-                    nyPodd.Episodes = episodeList;
-                    Podcastlista.Add(nyPodd);
                 }
+                nyPodd.Episodes = episodeList;
+                Podcastlista.Add(nyPodd);
                 return Podcastlista;
             }
         }
