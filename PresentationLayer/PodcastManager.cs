@@ -16,6 +16,8 @@ namespace PresentationLayer
 {
     public partial class Form1 : Form
     {
+
+        Podcast podcast = new Podcast("dsfsdf", "fdsofsdf", "Humor");
         EntityHandler eHandler = new EntityHandler();
         PodcastHandler pHandler = new PodcastHandler();
         SerializerService serializer = new SerializerService();
@@ -104,19 +106,14 @@ namespace PresentationLayer
         private void TestBtn_Click(object sender, EventArgs e)
         {
 
-            List<string> list = pHandler.FillPodcastFeed();
+            string[] row1 = { podcast.Title, podcast.Url, podcast.kategori };
+            PodcastFeed.Items.Add(podcast.episodeCount.ToString()).SubItems.AddRange(row1);
+
+
+            //List<string> list = pHandler.FillPodcastFeed();
 
 
 
-
-            /*
-
-
-            PodcastFeed.Items.Add(new ListViewItem(new[] { "1", "Poden om..", "Var 10:e minut", "Bizniz" }));
-            PodcastFeed.Items.Add(new ListViewItem(new[] { "3", "Börssnack med..", "Var 10:e minut", "Musik" }));
-            PodcastFeed.Items.Add(new ListViewItem(new[] { "87", "Livets gåtor", "Var 10:e minut", "Mat" }));
-            PodcastFeed.Items.Add(new ListViewItem(new[] { "8", "Hejbaberuba", "Var 10:e minut", "WoW" }));
-            */
         }
 
         private void categoryCb_SelectedIndexChanged(object sender, EventArgs e)
