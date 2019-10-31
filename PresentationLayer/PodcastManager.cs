@@ -94,6 +94,29 @@ namespace PresentationLayer
         {
 
         }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TestBtn_Click(object sender, EventArgs e)
+        {
+
+            List<string> list = pHandler.FillPodcastFeed();
+
+
+
+
+            /*
+
+
+            PodcastFeed.Items.Add(new ListViewItem(new[] { "1", "Poden om..", "Var 10:e minut", "Bizniz" }));
+            PodcastFeed.Items.Add(new ListViewItem(new[] { "3", "Börssnack med..", "Var 10:e minut", "Musik" }));
+            PodcastFeed.Items.Add(new ListViewItem(new[] { "87", "Livets gåtor", "Var 10:e minut", "Mat" }));
+            PodcastFeed.Items.Add(new ListViewItem(new[] { "8", "Hejbaberuba", "Var 10:e minut", "WoW" }));
+            */
+        }
     }
 
 }

@@ -65,7 +65,7 @@ namespace Logic
             }
         }
 
-       /* public static void SerializerPodcastfeed() //JSON-fil för Podcasts
+       public static void SerializerPodcastfeed() //JSON-fil för Podcasts
         {
 
             List<Podcast> podcasts = PodcastHandler.GetPodcastFeed();
@@ -87,6 +87,6 @@ namespace Logic
                 throw new Exception();
             }
         }
-        */    
+            
     }
 }

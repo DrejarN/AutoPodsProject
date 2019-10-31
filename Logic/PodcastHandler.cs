@@ -28,10 +28,24 @@ namespace Logic
         }
 
 
-        public void FillPodcastFeed() //Fyller podfeeden med content ur nersparad JSON-fil.
+        public List<string> FillPodcastFeed() //Fyller podfeeden med content ur nersparad JSON-fil.
         {
+            List<Category> categories = serializer.Deserialize<Category>(@"C:\podFeeds\categories.txt");
+            List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
+            List<string> xList = new List<string>();
 
+            foreach(Podcast podcast in podcasts)
+            {
+                xList.Add("1");
+                xList.Add(podcast.Title);
+                xList.Add("Var 10:e minut");
+                foreach (Category category in categories)
+                {
+                    xList.Add(category.CategoryName);
+                }
+            }
 
+            return xList;
         }
 
         public void FillEpisodeListOnPodcastClick() //När man klickar på en podcast i podfeeden displayas alla avsnitt tillhörande Podcasten i avsnittlistan.
@@ -76,6 +90,5 @@ namespace Logic
             List<Podcast> podcast = GetPodcastFeed();
             serializer.Serialize<Podcast>(@"C:\podFeeds\poddar.txt", podcast);
         }
-
     }
 }
