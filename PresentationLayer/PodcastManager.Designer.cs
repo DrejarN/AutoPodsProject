@@ -352,10 +352,6 @@ namespace PresentationLayer
 
         }
 
-        private void episodeList_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
 
         #endregion
         private System.Windows.Forms.Label label1;

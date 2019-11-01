@@ -28,16 +28,16 @@ namespace Logic
         }
 
 
-        public string[] FillPodcastFeed()
-        {
+        //public string[] FillPodcastFeed()
+        //{
 
-            List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
-            foreach (Podcast pod in podcasts)
-            {
-                string[] listToArray = new string [] { pod.episodeCount.ToString(), pod.Title, pod.UpdateFrequency, pod.categories.CategoryName };
-            }
-            return listTo
-        }
+        //    List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
+        //    foreach (Podcast pod in podcasts)
+        //    {
+        //        string[] listToArray = new string [] { pod.episodeCount.ToString(), pod.Title, pod.UpdateFrequency, pod.categories.CategoryName };
+        //    }
+        //    return listTo
+        //}
 
         //public List<string> FillPodcastFeed() //Fyller podfeeden med content ur nersparad JSON-fil.
         //{
