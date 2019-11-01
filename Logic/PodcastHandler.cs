@@ -54,28 +54,28 @@ namespace Logic
         }
 
         
-        public string[] FillEpisodeListOnPodcastClick(string selectedItem) //När man klickar på en podcast i podfeeden displayas alla avsnitt tillhörande Podcasten i avsnittlistan.
-        {
-            string[] listToArray = new[];
+        //public string[] FillEpisodeListOnPodcastClick(string selectedItem) //När man klickar på en podcast i podfeeden displayas alla avsnitt tillhörande Podcasten i avsnittlistan.
+        //{
+        //    string[] listToArray = new[];
 
-                List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
+        //        List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
 
-                //string selItem = PodcastFeed.SelectedItems[0].Text;
+        //        //string selItem = PodcastFeed.SelectedItems[0].Text;
 
-                foreach (Podcast podcast in podcasts)
-                {
-                    if (podcast.Title == selectedItem)
-                    {
-                        List<Episode> x = podcast.Episodes;
-                        for (int i = 0; i < x.Count(); i++ )
-                        {   
-                            listToArray[i] = { i.Name; }
-                            //episodeList.Items.Add(listToArray[0]);
-                        }
-                    }
-                }
-            return listToArray;
-        }
+        //        foreach (Podcast podcast in podcasts)
+        //        {
+        //            if (podcast.Title == selectedItem)
+        //            {
+        //                List<Episode> x = podcast.Episodes;
+        //                for (int i = 0; i < x.Count(); i++ )
+        //                {   
+        //                    listToArray[i] = { i.Name; }
+        //                    //episodeList.Items.Add(listToArray[0]);
+        //                }
+        //            }
+        //        }
+        //    return listToArray;
+        //}
         
 
         public void FillDescriptionBox() //När du klickar på ett avsnitt i avsnittslistan fylls textboxen till höger med en summary om avsnittet.
@@ -130,10 +130,11 @@ namespace Logic
         }
         public List<string> testMetod()
         {
-            List<string> yaho = new List<string>();
-            yaho.Add("10");
-            yaho.Add("60");
-            return yaho;
+            List<string> updateIntervals = new List<string>();
+            updateIntervals.Add("15");
+            updateIntervals.Add("30");
+            updateIntervals.Add("60");
+            return updateIntervals;
         }
 
         //public void TestMethod()

@@ -55,7 +55,8 @@ namespace PresentationLayer
 
         private void UpdatePodcastBtn_Click(object sender, EventArgs e)
         {
-           // pHandler.TestMethod();
+            eHandler.ChangePodcastFromList(PodcastFeed.SelectedItems[0].Text, urlInput.Text, frequencyCb.Text, categoryCb.Text);
+
         }
 
         private void NewCategoryBtn_Click(object sender, EventArgs e)
@@ -68,7 +69,7 @@ namespace PresentationLayer
 
         private void RemovePodcastBtn_Click(object sender, EventArgs e)
         {
-             eHandler.RemovePodcastFromList("http://businesspodden.libsyn.com/rss");
+             eHandler.RemovePodcastFromList(PodcastFeed.SelectedItems[0].Text);
         }
 
         private void RemoveCategoryBtn_Click(object sender, EventArgs e)
@@ -145,6 +146,11 @@ namespace PresentationLayer
                     }
                 }
             }
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
