@@ -43,6 +43,7 @@
             this.updatePodcastBtn = new System.Windows.Forms.Button();
             this.removePodcastBtn = new System.Windows.Forms.Button();
             this.episodeList = new System.Windows.Forms.ListView();
+            this.Avsnittnamn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label5 = new System.Windows.Forms.Label();
             this.episodeDesc = new System.Windows.Forms.TextBox();
             this.CategoryList = new System.Windows.Forms.ListBox();
@@ -53,7 +54,6 @@
             this.Frekvens = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Kategori = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.TestBtn = new System.Windows.Forms.Button();
-            this.Avsnittnamn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.episodeDescription = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -102,9 +102,10 @@
             this.label3.Location = new System.Drawing.Point(176, 174);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 13);
+            this.label3.Size = new System.Drawing.Size(98, 13);
             this.label3.TabIndex = 8;
-            this.label3.Text = "Uppdateringsfr.";
+            this.label3.Text = "Uppdateringsfr. min";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
@@ -213,6 +214,11 @@
             this.episodeList.View = System.Windows.Forms.View.Details;
             this.episodeList.Click += new System.EventHandler(this.episodeList_Click);
             // 
+            // Avsnittnamn
+            // 
+            this.Avsnittnamn.Text = "Avsnittnamn";
+            this.Avsnittnamn.Width = 360;
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -298,11 +304,6 @@
             this.TestBtn.Text = "TestBtn";
             this.TestBtn.UseVisualStyleBackColor = true;
             this.TestBtn.Click += new System.EventHandler(this.TestBtn_Click);
-            // 
-            // Avsnittnamn
-            // 
-            this.Avsnittnamn.Text = "Avsnittnamn";
-            this.Avsnittnamn.Width = 360;
             // 
             // episodeDescription
             // 

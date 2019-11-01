@@ -55,18 +55,36 @@ namespace Logic
             serializer.Serialize(@"C:\podFeeds\categories.txt", categoryList);
         }
 
-        public void RemovePodcastFromList(string url)
+        public void RemovePodcastFromList(string podcastName)
         {
             try
             {
                 List<Podcast> podcastList = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
-                Podcast podcastRemoved = podcastList.FirstOrDefault(a => a.Url == url);
+                Podcast podcastRemoved = podcastList.FirstOrDefault(a => a.Title == podcastName);
                 podcastList.Remove(podcastRemoved);
                 serializer.Serialize(@"C:\podFeeds\poddar.txt", podcastList);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
+            }
+        }
+
+        public void ChangePodcastFromList(string podcastName, string url, string freq, string category)
+        {
+            try
+            {
+                Category newCategory = new Category(category);
+                List<Podcast> podcastList = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
+                Podcast podcastChanged = podcastList.FirstOrDefault(a => a.Title == podcastName);
+                podcastChanged.Url = url;
+                podcastChanged.UpdateFrequency = freq;
+                podcastChanged.categories = newCategory;
+                serializer.Serialize(@"C:\podFeeds\poddar.txt", podcastList);
+            }
+            catch(Exception e)
+            {
+
             }
         }
         public void CreateNewCategory(string name)

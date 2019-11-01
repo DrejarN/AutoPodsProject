@@ -55,7 +55,8 @@ namespace PresentationLayer
 
         private void UpdatePodcastBtn_Click(object sender, EventArgs e)
         {
-           // pHandler.TestMethod();
+            eHandler.ChangePodcastFromList(PodcastFeed.SelectedItems[0].Text, urlInput.Text, frequencyCb.Text, categoryCb.Text);
+
         }
 
         private void NewCategoryBtn_Click(object sender, EventArgs e)
@@ -68,7 +69,7 @@ namespace PresentationLayer
 
         private void RemovePodcastBtn_Click(object sender, EventArgs e)
         {
-             eHandler.RemovePodcastFromList("http://businesspodden.libsyn.com/rss");
+             eHandler.RemovePodcastFromList(PodcastFeed.SelectedItems[0].Text);
         }
 
         private void RemoveCategoryBtn_Click(object sender, EventArgs e)
@@ -147,28 +148,9 @@ namespace PresentationLayer
             }
         }
 
-        private void episodeList_Click(object sender, EventArgs e)
+        private void label3_Click(object sender, EventArgs e)
         {
-            episodeDesc.Clear();
 
-            List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
-
-            string selItem = PodcastFeed.SelectedItems[0].Text;
-
-            foreach (Podcast podcast in podcasts)
-            {
-                if (podcast.Title == selItem)
-                {
-                    List<Episode> x = podcast.Episodes;
-                    foreach (Episode episode in x)
-                    {
-                        if (episode.Name == episodeList.SelectedItems[0].Text)
-                        {
-                            episodeDesc.Text = episode.Description;
-                        }
-                    }
-                }
-            }
         }
     }
 
