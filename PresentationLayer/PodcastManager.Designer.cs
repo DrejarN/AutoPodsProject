@@ -211,6 +211,7 @@
             this.episodeList.TabIndex = 18;
             this.episodeList.UseCompatibleStateImageBehavior = false;
             this.episodeList.View = System.Windows.Forms.View.Details;
+            this.episodeList.Click += new System.EventHandler(this.episodeList_Click);
             // 
             // label5
             // 
@@ -229,9 +230,9 @@
             this.episodeDesc.Margin = new System.Windows.Forms.Padding(2);
             this.episodeDesc.Multiline = true;
             this.episodeDesc.Name = "episodeDesc";
+            this.episodeDesc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.episodeDesc.Size = new System.Drawing.Size(218, 253);
             this.episodeDesc.TabIndex = 20;
-            this.episodeDesc.TextChanged += new System.EventHandler(this.EpisodeDesc_TextChanged);
             // 
             // CategoryList
             // 

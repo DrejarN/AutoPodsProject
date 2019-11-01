@@ -28,20 +28,31 @@ namespace Logic
         }
 
 
-        public List<string> FillPodcastFeed() //Fyller podfeeden med content ur nersparad JSON-fil.
+        public string[] FillPodcastFeed()
         {
-                List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
-                List<string> xList = new List<string>();
 
-                foreach (Podcast podcast in podcasts)
-                {
-                    xList.Add(podcast.episodeCount.ToString());
-                    xList.Add(podcast.Title);
-                    xList.Add(podcast.UpdateFrequency);
-                    xList.Add(podcast.categories.CategoryName);
-                }
-                return xList;
+            List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
+            foreach (Podcast pod in podcasts)
+            {
+                string[] listToArray = new string [] { pod.episodeCount.ToString(), pod.Title, pod.UpdateFrequency, pod.categories.CategoryName };
+            }
+            return listTo
         }
+
+        //public List<string> FillPodcastFeed() //Fyller podfeeden med content ur nersparad JSON-fil.
+        //{
+        //        List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
+        //        List<string> xList = new List<string>();
+
+        //        foreach (Podcast podcast in podcasts)
+        //        {
+        //            xList.Add(podcast.episodeCount.ToString());
+        //            xList.Add(podcast.Title);
+        //            xList.Add(podcast.UpdateFrequency);
+        //            xList.Add(podcast.categories.CategoryName);
+        //        }
+        //        return xList;
+        //}
 
         public bool CheckPodcasts()
         {
@@ -54,28 +65,28 @@ namespace Logic
         }
 
         
-        public string[] FillEpisodeListOnPodcastClick(string selectedItem) //När man klickar på en podcast i podfeeden displayas alla avsnitt tillhörande Podcasten i avsnittlistan.
-        {
-            string[] listToArray = new[];
+        //public string[] FillEpisodeListOnPodcastClick(string selectedItem) //När man klickar på en podcast i podfeeden displayas alla avsnitt tillhörande Podcasten i avsnittlistan.
+        //{
+        //    string[] listToArray = new[];
 
-                List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
+        //        List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
 
-                //string selItem = PodcastFeed.SelectedItems[0].Text;
+        //        //string selItem = PodcastFeed.SelectedItems[0].Text;
 
-                foreach (Podcast podcast in podcasts)
-                {
-                    if (podcast.Title == selectedItem)
-                    {
-                        List<Episode> x = podcast.Episodes;
-                        for (int i = 0; i < x.Count(); i++ )
-                        {   
-                            listToArray[i] = { i.Name; }
-                            //episodeList.Items.Add(listToArray[0]);
-                        }
-                    }
-                }
-            return listToArray;
-        }
+        //        foreach (Podcast podcast in podcasts)
+        //        {
+        //            if (podcast.Title == selectedItem)
+        //            {
+        //                List<Episode> x = podcast.Episodes;
+        //                for (int i = 0; i < x.Count(); i++ )
+        //                {   
+        //                    listToArray[i] = { x. }
+        //                    //episodeList.Items.Add(listToArray[0]);
+        //                }
+        //            }
+        //        }
+        //    return listToArray;
+        //}
         
 
         public void FillDescriptionBox() //När du klickar på ett avsnitt i avsnittslistan fylls textboxen till höger med en summary om avsnittet.
