@@ -26,6 +26,7 @@ namespace PresentationLayer
             CategoryList.DataSource = pHandler.FillCategoryList();
             categoryCb.DataSource = eHandler.fillCategoryDropBox();
             frequencyCb.DataSource = pHandler.testMetod();
+            pHandler.StartTimers();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -107,6 +108,7 @@ namespace PresentationLayer
 
         private void TestBtn_Click(object sender, EventArgs e)
         {
+
             List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
             foreach(Podcast pod in podcasts)
             {
@@ -178,6 +180,11 @@ namespace PresentationLayer
         }
 
         private void PodcastFeed_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
         {
 
         }

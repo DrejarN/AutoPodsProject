@@ -4,6 +4,8 @@ using System.Xml;
 using Data;
 using System.Linq;
 using System.Xml.Linq;
+using System;
+using System.Timers;
 
 namespace Logic
 {
@@ -11,6 +13,8 @@ namespace Logic
     {
         SerializerService serializer = new SerializerService();
         EntityHandler eHandler = new EntityHandler();
+        private Timer aTimer;
+
         //On start-up
 
         public List<string> FillCategoryList() //Fyller hela kategorilistan från en JSON fil där de är sparade?
@@ -28,16 +32,14 @@ namespace Logic
         }
 
 
-        //public string[] FillPodcastFeed()
-        //{
+        public List<Podcast> FillPodcastFeed()
+        {
+            //List<string> newList = new List<string>();
 
-        //    List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
-        //    foreach (Podcast pod in podcasts)
-        //    {
-        //        string[] listToArray = new string [] { pod.episodeCount.ToString(), pod.Title, pod.UpdateFrequency, pod.categories.CategoryName };
-        //    }
-        //    return listTo
-        //}
+            List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
+           
+            return podcasts;
+        }
 
         //public List<string> FillPodcastFeed() //Fyller podfeeden med content ur nersparad JSON-fil.
         //{
@@ -152,5 +154,55 @@ namespace Logic
         //    List<Podcast> podcast = GetPodcastFeed();
         //    serializer.Serialize<Podcast>(@"C:\podFeeds\poddar.txt", podcast);
         //}
+
+        public void UpdateEpisodeViaTimer(string url)
+        {
+            List<Episode> episodeList = new List<Episode>();
+            int x = 1;
+            List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
+            foreach (Podcast podcast in podcasts)
+            {
+                if (podcast.Url == url)
+                {
+                    using (XmlReader reader = XmlReader.Create(url))
+                    {
+                        SyndicationFeed feed = SyndicationFeed.Load(reader);
+                        foreach (SyndicationItem item in feed.Items)
+                        {
+                            string epTitle = item.Title.Text;
+                            string eDesc = item.Summary.Text;
+                            Episode oneEpisode = new Episode(epTitle, eDesc, x);
+                            episodeList.Add(oneEpisode);
+                            x++;
+                        }
+
+                    }
+                    podcast.Episodes = episodeList;
+                }
+
+                
+            }
+            serializer.Serialize<Podcast>(@"C:\podFeeds\poddar.txt", podcasts);
+        }
+
+        public void StartTimers()
+        {
+            List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
+            foreach (Podcast podcast in podcasts)
+            {
+                var timer = new NamedTimer(podcast.Url);
+                timer.Interval = Int32.Parse(podcast.UpdateFrequency) * 6000;
+                timer.Elapsed += OnTimedEvent;
+                timer.Start();
+                
+            }
+        }
+
+        private void OnTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            NamedTimer timer = source as NamedTimer;
+            UpdateEpisodeViaTimer(timer.name);
+        }
+
     }
 }

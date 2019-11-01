@@ -42,6 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IPod.cs" />
+    <Compile Include="NamedTimer.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="PodDatabase.cs" />
     <Compile Include="Podcast.cs" />
     <Compile Include="Category.cs" />

@@ -30,6 +30,7 @@ namespace PresentationLayer
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.categoryInput = new System.Windows.Forms.TextBox();
             this.newCategoryBtn = new System.Windows.Forms.Button();
@@ -57,6 +58,7 @@ namespace PresentationLayer
             this.Kategori = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.TestBtn = new System.Windows.Forms.Button();
             this.episodeDescription = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -317,6 +319,11 @@ namespace PresentationLayer
             this.episodeDescription.TabIndex = 26;
             this.episodeDescription.Text = "Episode Description";
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -381,6 +388,7 @@ namespace PresentationLayer
         private System.Windows.Forms.Button TestBtn;
         private System.Windows.Forms.ColumnHeader Avsnittnamn;
         private System.Windows.Forms.Label episodeDescription;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
