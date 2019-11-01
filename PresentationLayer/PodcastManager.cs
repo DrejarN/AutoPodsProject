@@ -84,7 +84,8 @@ namespace PresentationLayer
 
         private void saveCategoryBtn_Click(object sender, EventArgs e)
         {
-           
+            eHandler.ChangeCategoryFromList(CategoryList.SelectedItem.ToString(), categoryInput.Text);
+            CategoryList.DataSource = pHandler.FillCategoryList();
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
