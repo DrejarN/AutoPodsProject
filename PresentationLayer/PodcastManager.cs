@@ -102,6 +102,7 @@ namespace PresentationLayer
 
         }
 
+
         private void TestBtn_Click(object sender, EventArgs e)
         {
             List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
@@ -121,6 +122,28 @@ namespace PresentationLayer
         private void frequencyCb_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void PodcastFeed_Click(object sender, EventArgs e)
+        {
+            episodeList.Items.Clear();
+            
+            List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
+
+            string selItem = PodcastFeed.SelectedItems[0].Text;
+
+            foreach (Podcast podcast in podcasts)
+            {
+                if (podcast.Title == selItem)
+                {
+                    List<Episode> x = podcast.Episodes;
+                    foreach (Episode episode in x)
+                    {
+                        string[] listToArray = { episode.Name };
+                        episodeList.Items.Add(listToArray[0]);
+                    }
+                }
+            }
         }
     }
 
