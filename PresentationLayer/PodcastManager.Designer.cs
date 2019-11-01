@@ -1,4 +1,6 @@
-﻿namespace PresentationLayer
+﻿using System;
+
+namespace PresentationLayer
 {
     partial class Form1
     {
@@ -273,6 +275,7 @@
             this.PodcastFeed.TabIndex = 24;
             this.PodcastFeed.UseCompatibleStateImageBehavior = false;
             this.PodcastFeed.View = System.Windows.Forms.View.Details;
+            this.PodcastFeed.SelectedIndexChanged += new System.EventHandler(this.PodcastFeed_SelectedIndexChanged);
             this.PodcastFeed.Click += new System.EventHandler(this.PodcastFeed_Click);
             // 
             // Namn
@@ -347,6 +350,11 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        private void episodeList_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

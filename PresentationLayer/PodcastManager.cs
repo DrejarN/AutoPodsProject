@@ -148,7 +148,36 @@ namespace PresentationLayer
             }
         }
 
+        private void episodeList_Click(object sender, EventArgs e)
+        {
+            episodeDesc.Clear();
+
+            List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
+
+            string selItem = PodcastFeed.SelectedItems[0].Text;
+
+            foreach (Podcast podcast in podcasts)
+            {
+                if (podcast.Title == selItem)
+                {
+                    List<Episode> x = podcast.Episodes;
+                    foreach (Episode episode in x)
+                    {
+                        if (episode.Name == episodeList.SelectedItems[0].Text)
+                        {
+                            episodeDesc.Text = episode.Description;
+                        }
+                    }
+                }
+            }
+        }
+
         private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PodcastFeed_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
