@@ -66,28 +66,5 @@ namespace Logic
             }
         }
 
-       //public static void SerializerPodcastfeed() //JSON-fil för Podcasts
-       // {
-
-       //     List<Podcast> podcasts = PodcastHandler.GetPodcastFeed();
-
-       //     try
-       //     {
-       //         using (StreamWriter file = File.CreateText(@"C:\podFeeds\pdfeed.txt"))
-       //         {
-       //             JsonSerializer serializer = new JsonSerializer();
-       //             using (var jw = new JsonTextWriter(file))
-       //             {
-       //                 serializer.Formatting = Formatting.Indented;
-       //                 serializer.Serialize(jw, podcasts);
-       //             }
-       //         }
-       //     }
-       //     catch (Exception)
-       //     {
-       //         throw new Exception();
-       //     }
-       // }
-            
     }
 }

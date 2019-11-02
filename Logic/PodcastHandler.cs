@@ -14,16 +14,28 @@ namespace Logic
     {
         SerializerService serializer = new SerializerService();
         EntityHandler eHandler = new EntityHandler();
+        CategoryDatabase cDB = new CategoryDatabase();
+        PodcastDatabase pDB = new PodcastDatabase();
+        EpisodeDatabase eDB = new EpisodeDatabase();
+        List<Podcast> deserializedPodcasts; 
 
-        //On start-up
+        //public virtual void deserializePod()
+        //{
+        //    if (eHandler.IfFileExists(@"C:\podFeeds\poddar.txt")) {
+        //        pDB.Podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
+        //        this.deserializedPodcasts = pDB.Podcasts;
+        //    }
+                
+            
+        //}
 
         public List<string> FillCategoryList() //Fyller hela kategorilistan från en JSON fil där de är sparade?
         {
             List<string> CategoryNameList = new List<string>();
             if (eHandler.IfFileExists(@"C:\podFeeds\categories.txt"))
             {
-                List<Category> categories = serializer.Deserialize<Category>(@"C:\podFeeds\categories.txt");
-                foreach (Category category in categories)
+                cDB.categoryDb = serializer.Deserialize<Category>(@"C:\podFeeds\categories.txt");
+                foreach (Category category in cDB.categoryDb)
                 {
                     CategoryNameList.Add(category.CategoryName);
                 }
@@ -99,10 +111,9 @@ namespace Logic
 
         public Podcast GetPodcastFeed(string url, string selectedCategory, string timer)   
         {
-            Category selectedCategoryObject = new Category(selectedCategory);
-            int x = 1;
-            List<Episode> episodeList = new List<Episode>();
-            Podcast nyPodd = new Podcast();
+            Category selectedCategoryObject = cDB.AddCategory(selectedCategory);
+            int x = 3;
+            Podcast nyPodd = pDB.AddPodcast();
             string rssFeedurl = url;
             using (XmlReader reader = XmlReader.Create(rssFeedurl))
             {
@@ -115,12 +126,11 @@ namespace Logic
                 {
                     string epTitle = item.Title.Text;
                     string eDesc = item.Summary.Text;
-                    Episode oneEpisode = new Episode(epTitle, eDesc, x);
-                    episodeList.Add(oneEpisode);
+                    eDB.AddEpisode(epTitle, eDesc, x);
                     x++;
                 }
                 nyPodd.episodeCount = x;
-                nyPodd.Episodes = episodeList;
+                nyPodd.Episodes = eDB.Episodes;
                
                 return nyPodd;
             }
@@ -131,16 +141,24 @@ namespace Logic
             Podcast newPodcast = GetPodcastFeed(url, selectedCategory, timer);
             if (eHandler.IfFileExists(@"C:\podFeeds\poddar.txt"))
             {
-                List<Podcast> oldPodcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
-                oldPodcasts.Add(newPodcast);
-                serializer.Serialize<Podcast>(@"C:\podFeeds\poddar.txt", oldPodcasts);
+                pDB.Podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
+                pDB.Podcasts.Add(newPodcast);
+                serializer.Serialize<Podcast>(@"C:\podFeeds\poddar.txt", pDB.Podcasts);
             }
             else
             {
-                List<Podcast> newPodList = new List<Podcast>();
-                newPodList.Add(newPodcast);
-                serializer.Serialize<Podcast>(@"C:\podFeeds\poddar.txt", newPodList);
+                pDB.Podcasts.Add(newPodcast);
+                serializer.Serialize<Podcast>(@"C:\podFeeds\poddar.txt", pDB.Podcasts);
             }
+        }
+        public List<Podcast> SortPodcastsByCategory(string category)
+        {
+                List<Podcast> sortedPodcastList;
+                pDB.Podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
+                sortedPodcastList = pDB.Podcasts.OrderByDescending(pod => pod.categories.CategoryName == category).ToList();
+                return sortedPodcastList;
+
+          
         }
         public List<string> testMetod()
         {
@@ -158,10 +176,10 @@ namespace Logic
 
         public void UpdateEpisodeViaTimer(string url)
         {
-            List<Episode> episodeList = new List<Episode>();
             int x = 1;
-            List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
-            foreach (Podcast podcast in podcasts)
+            pDB.Podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
+            List<Episode> newEpList = new List<Episode>();
+            foreach (Podcast podcast in pDB.Podcasts)
             {
                 if (podcast.Url == url)
                 {
@@ -172,29 +190,29 @@ namespace Logic
                         {
                             string epTitle = item.Title.Text;
                             string eDesc = item.Summary.Text;
-                            Episode oneEpisode = new Episode(epTitle, eDesc, x);
-                            episodeList.Add(oneEpisode);
+                            Episode nyEp = new Episode(epTitle, eDesc, x);
                             x++;
+                            newEpList.Add(nyEp);
                         }
 
                     }
-                    podcast.Episodes = episodeList;
+                    podcast.Episodes = newEpList;
                 }
 
                 
             }
-            serializer.Serialize<Podcast>(@"C:\podFeeds\poddar.txt", podcasts);
+            serializer.Serialize<Podcast>(@"C:\podFeeds\poddar.txt", pDB.Podcasts);
         }
 
         public void StartTimers()
         {
             if (eHandler.IfFileExists(@"C:\podFeeds\poddar.txt"))
             {
-                List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
-                foreach (Podcast podcast in podcasts)
+                pDB.Podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
+                foreach (Podcast podcast in pDB.Podcasts)
                 {
                     var timer = new NamedTimer(podcast.Url);
-                    timer.Interval = Int32.Parse(podcast.UpdateFrequency) * 6000;
+                    timer.Interval = Int32.Parse(podcast.UpdateFrequency) * 600;
                     timer.Elapsed += OnTimedEvent;
                     timer.Start();
 

@@ -41,8 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoryDatabase.cs" />
+    <Compile Include="EpisodeDatabase.cs" />
     <Compile Include="IPod.cs" />
-    <Compile Include="PodDatabase.cs" />
+    <Compile Include="PodcastDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

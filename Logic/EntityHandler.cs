@@ -14,6 +14,15 @@ namespace Logic
     {
 
         SerializerService serializer = new SerializerService();
+        CategoryDatabase cDB = new CategoryDatabase();
+        PodcastDatabase pDB = new PodcastDatabase();
+        public List<Category> dezerialisedCategories;
+
+        //public override void deserializePod()
+        //{
+        //        cDB.categoryDb = serializer.Deserialize<Category>(@"C:\podFeeds\poddar.txt");
+        //        this.dezerialisedCategories = cDB.categoryDb;
+        //}
         public bool IfFileExists(string filename)
         {
             bool fileExists = false;
@@ -27,43 +36,40 @@ namespace Logic
         {
             if (IfFileExists(@"C:\podFeeds\categories.txt"))
             {
-                List<Category> categoryList = serializer.Deserialize<Category>(@"C:\podFeeds\categories.txt");
-                Category category = new Category(newCategory);
-                categoryList.Add(category);
-                serializer.Serialize(@"C:\podFeeds\categories.txt", categoryList);
+                cDB.categoryDb = serializer.Deserialize<Category>(@"C:\podFeeds\categories.txt");
+                cDB.AddCategory(newCategory);
+                serializer.Serialize(@"C:\podFeeds\categories.txt", cDB.categoryDb);
             } else
             {
-                List<Category> categoryList = new List<Category>();
-                Category category = new Category(newCategory);
-                categoryList.Add(category);
-                serializer.Serialize(@"C:\podFeeds\categories.txt", categoryList);
+                cDB.AddCategory(newCategory);
+                serializer.Serialize(@"C:\podFeeds\categories.txt", cDB.categoryDb);
             }
         }
 
         public void RemoveCategoryFromList(string categoryName) 
         {
-            List<Category> categoryList = serializer.Deserialize<Category>(@"C:\podFeeds\categories.txt");
-            var namn = categoryList.FirstOrDefault(x => x.CategoryName == categoryName);
-            categoryList.Remove(namn);
-            serializer.Serialize(@"C:\podFeeds\categories.txt", categoryList);
+            cDB.categoryDb = serializer.Deserialize<Category>(@"C:\podFeeds\categories.txt");
+            var namn = cDB.categoryDb.FirstOrDefault(x => x.CategoryName == categoryName);
+            cDB.categoryDb.Remove(namn);
+            serializer.Serialize(@"C:\podFeeds\categories.txt", cDB.categoryDb);
         }
 
         public void ChangeCategoryFromList(string categoryName, string changedCategoryName)
         {
-            List<Category> categoryList = serializer.Deserialize<Category>(@"C:\podFeeds\categories.txt");
-            var category = categoryList.FirstOrDefault(x => x.CategoryName == categoryName);
+            cDB.categoryDb = serializer.Deserialize<Category>(@"C:\podFeeds\categories.txt");
+            var category = cDB.categoryDb.FirstOrDefault(x => x.CategoryName == categoryName);
             category.CategoryName = changedCategoryName;
-            serializer.Serialize(@"C:\podFeeds\categories.txt", categoryList);
+            serializer.Serialize(@"C:\podFeeds\categories.txt", cDB.categoryDb);
         }
 
         public void RemovePodcastFromList(string podcastName)
         {
             try
             {
-                List<Podcast> podcastList = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
-                Podcast podcastRemoved = podcastList.FirstOrDefault(a => a.Title == podcastName);
-                podcastList.Remove(podcastRemoved);
-                serializer.Serialize(@"C:\podFeeds\poddar.txt", podcastList);
+                pDB.Podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
+                Podcast podcastRemoved = pDB.Podcasts.FirstOrDefault(a => a.Title == podcastName);
+                pDB.Podcasts.Remove(podcastRemoved);
+                serializer.Serialize(@"C:\podFeeds\poddar.txt", pDB.Podcasts);
             }
             catch (Exception e)
             {
@@ -75,13 +81,12 @@ namespace Logic
         {
             try
             {
-                Category newCategory = new Category(category);
-                List<Podcast> podcastList = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
-                Podcast podcastChanged = podcastList.FirstOrDefault(a => a.Title == podcastName);
+                pDB.Podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
+                Podcast podcastChanged = pDB.Podcasts.FirstOrDefault(a => a.Title == podcastName);
                 podcastChanged.Url = url;
                 podcastChanged.UpdateFrequency = freq;
-                podcastChanged.categories = newCategory;
-                serializer.Serialize(@"C:\podFeeds\poddar.txt", podcastList);
+                podcastChanged.categories = cDB.AddCategory(category);
+                serializer.Serialize(@"C:\podFeeds\poddar.txt", pDB.Podcasts);
             }
             catch(Exception e)
             {
@@ -95,9 +100,9 @@ namespace Logic
             List<string> categoryAsString = new List<string>();
 
             if (IfFileExists(@"C:\podFeeds\categories.txt")) { 
-            List<Category> categoryList = serializer.Deserialize<Category>(@"C:\podFeeds\categories.txt");
+            cDB.categoryDb = serializer.Deserialize<Category>(@"C:\podFeeds\categories.txt");
             
-            foreach (Category category in categoryList)
+            foreach (Category category in cDB.categoryDb)
             {
                 categoryAsString.Add(category.CategoryName);
             }
@@ -109,23 +114,5 @@ namespace Logic
                 return categoryAsString;
             }
         }
-
-        public void testMetod()
-        {
-            List<object> enlista = new List<object>();
-            Category category = new Category("Hejhopp");
-            enlista.Add(category);
-
-            serializer.Serialize(@"C:\podFeeds\categories.txt", enlista);
-        }
-
-        public void testMetod2()
-        {
-            List<Category> nylista = serializer.Deserialize<Category>(@"C:\podFeeds\categories");
-            Category category = new Category("Hejhoppv2");
-            nylista.Add(category);
-            serializer.Serialize(@"C:\podFeeds\categories.txt", nylista);
-        }
-
     }
 }

@@ -75,6 +75,7 @@ namespace PresentationLayer
         private void RemovePodcastBtn_Click(object sender, EventArgs e)
         {
              eHandler.RemovePodcastFromList(PodcastFeed.SelectedItems[0].Text);
+            FillPodcastFeed();
         }
 
         private void RemoveCategoryBtn_Click(object sender, EventArgs e)
@@ -111,6 +112,7 @@ namespace PresentationLayer
 
         public void FillPodcastFeed()
         {
+            PodcastFeed.Items.Clear();
             if (eHandler.IfFileExists(@"C:\podFeeds\poddar.txt"))
             {
                 List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
@@ -191,6 +193,15 @@ namespace PresentationLayer
 
         private void SortByCategory_Click(object sender, EventArgs e)
         {
+
+            PodcastFeed.Items.Clear();
+            List<Podcast> podcasts = pHandler.SortPodcastsByCategory(categoryCb.Text);
+                foreach (Podcast pod in podcasts)
+                {
+                    string[] listToArray = { pod.episodeCount.ToString(), pod.Title, pod.UpdateFrequency, pod.categories.CategoryName };
+                    string[] row1 = { listToArray[0], listToArray[2], listToArray[3] };
+                    PodcastFeed.Items.Add(listToArray[1]).SubItems.AddRange(row1);
+                }
 
         }
     }

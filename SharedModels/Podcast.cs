@@ -14,11 +14,14 @@ namespace SharedModels
         public List<Episode> Episodes { get; set; }
         public int episodeCount { get; set; }
         public string UpdateFrequency { get; set; }
-        public Podcast(string title, string url, Category type)
+        public Podcast(string title, string url, Category type, List<Episode> lista, int count, string freq)
         {
             Title = title;
             Url = url;
             this.categories = type;
+            this.Episodes = lista;
+            episodeCount = count;
+            UpdateFrequency = freq;
         }
         public Podcast()
         {
