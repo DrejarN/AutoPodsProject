@@ -20,6 +20,7 @@ namespace PresentationLayer
         EntityHandler eHandler = new EntityHandler();
         PodcastHandler pHandler = new PodcastHandler();
         SerializerService serializer = new SerializerService();
+        Validation validator = new Validation();
         public Form1()
         {
             InitializeComponent();
@@ -52,9 +53,19 @@ namespace PresentationLayer
 
         private void AddPodcastBtn_Click(object sender, EventArgs e)
         {
+            try //Denna verkar inte funka :(
+            {
+                string field = urlInput.Text;
+                validator.IfStringFieldEmpty(field);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message + "Method won't allow empty field");
+            }
+
             pHandler.addPodcast(urlInput.Text, categoryCb.Text, frequencyCb.Text);
-            PodcastFeed.Items.Clear();
-            FillPodcastFeed();
+                PodcastFeed.Items.Clear();
+                FillPodcastFeed();
         }
 
         private void UpdatePodcastBtn_Click(object sender, EventArgs e)
@@ -111,7 +122,7 @@ namespace PresentationLayer
 
         public void FillPodcastFeed()
         {
-            if (eHandler.IfFileExists(@"C:\podFeeds\poddar.txt"))
+            if (validator.IfFileExists(@"C:\podFeeds\poddar.txt"))
             {
                 List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
                 foreach (Podcast pod in podcasts)

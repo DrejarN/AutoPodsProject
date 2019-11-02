@@ -14,18 +14,12 @@ namespace Logic
     {
 
         SerializerService serializer = new SerializerService();
-        public bool IfFileExists(string filename)
-        {
-            bool fileExists = false;
-            if(File.Exists(filename)) {
-                fileExists = true;
-            }
-            return fileExists;
-        }
+        Validation validator = new Validation();
+
 
         public void AddNewCategoryToList(string newCategory)
         {
-            if (IfFileExists(@"C:\podFeeds\categories.txt"))
+            if (validator.IfFileExists(@"C:\podFeeds\categories.txt"))
             {
                 List<Category> categoryList = serializer.Deserialize<Category>(@"C:\podFeeds\categories.txt");
                 Category category = new Category(newCategory);
@@ -94,7 +88,7 @@ namespace Logic
             string hej = "finns ingen kategori";
             List<string> categoryAsString = new List<string>();
 
-            if (IfFileExists(@"C:\podFeeds\categories.txt")) { 
+            if (validator.IfFileExists(@"C:\podFeeds\categories.txt")) { 
             List<Category> categoryList = serializer.Deserialize<Category>(@"C:\podFeeds\categories.txt");
             
             foreach (Category category in categoryList)

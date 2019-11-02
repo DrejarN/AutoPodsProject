@@ -14,13 +14,14 @@ namespace Logic
     {
         SerializerService serializer = new SerializerService();
         EntityHandler eHandler = new EntityHandler();
+        Validation validator = new Validation();
 
         //On start-up
 
         public List<string> FillCategoryList() //Fyller hela kategorilistan från en JSON fil där de är sparade?
         {
             List<string> CategoryNameList = new List<string>();
-            if (eHandler.IfFileExists(@"C:\podFeeds\categories.txt"))
+            if (validator.IfFileExists(@"C:\podFeeds\categories.txt"))
             {
                 List<Category> categories = serializer.Deserialize<Category>(@"C:\podFeeds\categories.txt");
                 foreach (Category category in categories)
@@ -60,7 +61,7 @@ namespace Logic
         public bool CheckPodcasts()
         {
             bool x = false;
-            if(eHandler.IfFileExists(@"C:\podFeeds\poddar.txt"))
+            if(validator.IfFileExists(@"C:\podFeeds\poddar.txt"))
             {
                 x = true;
             }
@@ -128,19 +129,20 @@ namespace Logic
 
         public void addPodcast(string url, string selectedCategory, string timer)
         {
-            Podcast newPodcast = GetPodcastFeed(url, selectedCategory, timer);
-            if (eHandler.IfFileExists(@"C:\podFeeds\poddar.txt"))
-            {
-                List<Podcast> oldPodcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
-                oldPodcasts.Add(newPodcast);
-                serializer.Serialize<Podcast>(@"C:\podFeeds\poddar.txt", oldPodcasts);
-            }
-            else
-            {
-                List<Podcast> newPodList = new List<Podcast>();
-                newPodList.Add(newPodcast);
-                serializer.Serialize<Podcast>(@"C:\podFeeds\poddar.txt", newPodList);
-            }
+                Podcast newPodcast = GetPodcastFeed(url, selectedCategory, timer);
+                if (validator.IfFileExists(@"C:\podFeeds\poddar.txt"))
+                {
+                    List<Podcast> oldPodcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
+                    oldPodcasts.Add(newPodcast);
+                    serializer.Serialize<Podcast>(@"C:\podFeeds\poddar.txt", oldPodcasts);
+                }
+                else
+                {
+                    List<Podcast> newPodList = new List<Podcast>();
+                    newPodList.Add(newPodcast);
+                    serializer.Serialize<Podcast>(@"C:\podFeeds\poddar.txt", newPodList);
+                } 
+            
         }
         public List<string> testMetod()
         {
@@ -188,7 +190,7 @@ namespace Logic
 
         public void StartTimers()
         {
-            if (eHandler.IfFileExists(@"C:\podFeeds\poddar.txt"))
+            if (validator.IfFileExists(@"C:\podFeeds\poddar.txt"))
             {
                 List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
                 foreach (Podcast podcast in podcasts)
