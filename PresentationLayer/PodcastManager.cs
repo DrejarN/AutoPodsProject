@@ -9,8 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
-using Data;
 using Logic;
+using SharedModels;
 
 namespace PresentationLayer
 {
@@ -26,6 +26,7 @@ namespace PresentationLayer
             CategoryList.DataSource = pHandler.FillCategoryList();
             categoryCb.DataSource = eHandler.fillCategoryDropBox();
             frequencyCb.DataSource = pHandler.testMetod();
+            FillPodcastFeed();
             pHandler.StartTimers();
         }
 
@@ -105,12 +106,10 @@ namespace PresentationLayer
 
         }
 
-
-        private void TestBtn_Click(object sender, EventArgs e)
+        public void FillPodcastFeed()
         {
-
             List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
-            foreach(Podcast pod in podcasts)
+            foreach (Podcast pod in podcasts)
             {
                 string[] listToArray = { pod.episodeCount.ToString(), pod.Title, pod.UpdateFrequency, pod.categories.CategoryName };
                 string[] row1 = { listToArray[0], listToArray[2], listToArray[3] };

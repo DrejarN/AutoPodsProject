@@ -6,6 +6,7 @@ using System.Linq;
 using System.Xml.Linq;
 using System;
 using System.Timers;
+using SharedModels;
 
 namespace Logic
 {
@@ -13,7 +14,6 @@ namespace Logic
     {
         SerializerService serializer = new SerializerService();
         EntityHandler eHandler = new EntityHandler();
-        private Timer aTimer;
 
         //On start-up
 
@@ -32,14 +32,15 @@ namespace Logic
         }
 
 
-        public List<Podcast> FillPodcastFeed()
-        {
-            //List<string> newList = new List<string>();
+        //public List<Podcast> FillPodcastFeed()
+        //{
 
-            List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
+        //    //List<string> newList = new List<string>();
+
+        //    List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
            
-            return podcasts;
-        }
+        //    return podcasts;
+        //}
 
         //public List<string> FillPodcastFeed() //Fyller podfeeden med content ur nersparad JSON-fil.
         //{
@@ -187,14 +188,17 @@ namespace Logic
 
         public void StartTimers()
         {
-            List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
-            foreach (Podcast podcast in podcasts)
+            if (eHandler.IfFileExists(@"C:\podFeeds\poddar.txt"))
             {
-                var timer = new NamedTimer(podcast.Url);
-                timer.Interval = Int32.Parse(podcast.UpdateFrequency) * 6000;
-                timer.Elapsed += OnTimedEvent;
-                timer.Start();
-                
+                List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
+                foreach (Podcast podcast in podcasts)
+                {
+                    var timer = new NamedTimer(podcast.Url);
+                    timer.Interval = Int32.Parse(podcast.UpdateFrequency) * 6000;
+                    timer.Elapsed += OnTimedEvent;
+                    timer.Start();
+
+                }
             }
         }
 

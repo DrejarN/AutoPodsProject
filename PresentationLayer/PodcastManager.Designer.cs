@@ -56,7 +56,6 @@ namespace PresentationLayer
             this.Avsnitt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Frekvens = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Kategori = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.TestBtn = new System.Windows.Forms.Button();
             this.episodeDescription = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
@@ -300,16 +299,6 @@ namespace PresentationLayer
             this.Kategori.Text = "Kategori";
             this.Kategori.Width = 97;
             // 
-            // TestBtn
-            // 
-            this.TestBtn.Location = new System.Drawing.Point(16, 235);
-            this.TestBtn.Name = "TestBtn";
-            this.TestBtn.Size = new System.Drawing.Size(75, 23);
-            this.TestBtn.TabIndex = 25;
-            this.TestBtn.Text = "TestBtn";
-            this.TestBtn.UseVisualStyleBackColor = true;
-            this.TestBtn.Click += new System.EventHandler(this.TestBtn_Click);
-            // 
             // episodeDescription
             // 
             this.episodeDescription.AutoSize = true;
@@ -330,7 +319,6 @@ namespace PresentationLayer
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(637, 579);
             this.Controls.Add(this.episodeDescription);
-            this.Controls.Add(this.TestBtn);
             this.Controls.Add(this.PodcastFeed);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.CategoryList);
@@ -359,6 +347,11 @@ namespace PresentationLayer
 
         }
 
+        private void TestBtn_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
 
         #endregion
         private System.Windows.Forms.Label label1;
@@ -385,7 +378,6 @@ namespace PresentationLayer
         private System.Windows.Forms.ColumnHeader Namn;
         private System.Windows.Forms.ColumnHeader Frekvens;
         private System.Windows.Forms.ColumnHeader Kategori;
-        private System.Windows.Forms.Button TestBtn;
         private System.Windows.Forms.ColumnHeader Avsnittnamn;
         private System.Windows.Forms.Label episodeDescription;
         private System.Windows.Forms.Timer timer1;

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Data;
 using Newtonsoft.Json;
+using SharedModels;
 
 namespace Logic
 {

@@ -42,14 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IPod.cs" />
-    <Compile Include="NamedTimer.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="PodDatabase.cs" />
-    <Compile Include="Podcast.cs" />
-    <Compile Include="Category.cs" />
-    <Compile Include="Episode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SharedModels\SharedModels.csproj">
+      <Project>{c6263f2e-3932-41af-95a0-44e23d6c5094}</Project>
+      <Name>SharedModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
