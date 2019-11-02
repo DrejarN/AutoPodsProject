@@ -53,6 +53,8 @@ namespace PresentationLayer
         private void AddPodcastBtn_Click(object sender, EventArgs e)
         {
             pHandler.addPodcast(urlInput.Text, categoryCb.Text, frequencyCb.Text);
+            PodcastFeed.Items.Clear();
+            FillPodcastFeed();
         }
 
         private void UpdatePodcastBtn_Click(object sender, EventArgs e)
@@ -67,6 +69,7 @@ namespace PresentationLayer
             eHandler.AddNewCategoryToList(input);
             categoryInput.Clear();
             CategoryList.DataSource = pHandler.FillCategoryList();
+            categoryCb.DataSource = eHandler.fillCategoryDropBox();
         }
 
         private void RemovePodcastBtn_Click(object sender, EventArgs e)
@@ -108,12 +111,15 @@ namespace PresentationLayer
 
         public void FillPodcastFeed()
         {
-            List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
-            foreach (Podcast pod in podcasts)
+            if (eHandler.IfFileExists(@"C:\podFeeds\poddar.txt"))
             {
-                string[] listToArray = { pod.episodeCount.ToString(), pod.Title, pod.UpdateFrequency, pod.categories.CategoryName };
-                string[] row1 = { listToArray[0], listToArray[2], listToArray[3] };
-                PodcastFeed.Items.Add(listToArray[1]).SubItems.AddRange(row1);
+                List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
+                foreach (Podcast pod in podcasts)
+                {
+                    string[] listToArray = { pod.episodeCount.ToString(), pod.Title, pod.UpdateFrequency, pod.categories.CategoryName };
+                    string[] row1 = { listToArray[0], listToArray[2], listToArray[3] };
+                    PodcastFeed.Items.Add(listToArray[1]).SubItems.AddRange(row1);
+                }
             }
         }
 
@@ -173,17 +179,17 @@ namespace PresentationLayer
             }
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void PodcastFeed_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
         private void timer1_Tick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SortByCategory_Click(object sender, EventArgs e)
         {
 
         }

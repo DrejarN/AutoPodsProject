@@ -58,6 +58,7 @@ namespace PresentationLayer
             this.Kategori = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.episodeDescription = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.SortByCategory = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -108,7 +109,6 @@ namespace PresentationLayer
             this.label3.Size = new System.Drawing.Size(98, 13);
             this.label3.TabIndex = 8;
             this.label3.Text = "Uppdateringsfr. min";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
@@ -172,7 +172,7 @@ namespace PresentationLayer
             // 
             // addPodcastBtn
             // 
-            this.addPodcastBtn.Location = new System.Drawing.Point(169, 231);
+            this.addPodcastBtn.Location = new System.Drawing.Point(90, 232);
             this.addPodcastBtn.Margin = new System.Windows.Forms.Padding(2);
             this.addPodcastBtn.Name = "addPodcastBtn";
             this.addPodcastBtn.Size = new System.Drawing.Size(66, 28);
@@ -183,7 +183,7 @@ namespace PresentationLayer
             // 
             // updatePodcastBtn
             // 
-            this.updatePodcastBtn.Location = new System.Drawing.Point(239, 231);
+            this.updatePodcastBtn.Location = new System.Drawing.Point(160, 232);
             this.updatePodcastBtn.Margin = new System.Windows.Forms.Padding(2);
             this.updatePodcastBtn.Name = "updatePodcastBtn";
             this.updatePodcastBtn.Size = new System.Drawing.Size(66, 28);
@@ -194,7 +194,7 @@ namespace PresentationLayer
             // 
             // removePodcastBtn
             // 
-            this.removePodcastBtn.Location = new System.Drawing.Point(310, 231);
+            this.removePodcastBtn.Location = new System.Drawing.Point(231, 232);
             this.removePodcastBtn.Margin = new System.Windows.Forms.Padding(2);
             this.removePodcastBtn.Name = "removePodcastBtn";
             this.removePodcastBtn.Size = new System.Drawing.Size(66, 28);
@@ -313,11 +313,22 @@ namespace PresentationLayer
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // SortByCategory
+            // 
+            this.SortByCategory.Location = new System.Drawing.Point(302, 232);
+            this.SortByCategory.Name = "SortByCategory";
+            this.SortByCategory.Size = new System.Drawing.Size(75, 28);
+            this.SortByCategory.TabIndex = 27;
+            this.SortByCategory.Text = "Sortera";
+            this.SortByCategory.UseVisualStyleBackColor = true;
+            this.SortByCategory.Click += new System.EventHandler(this.SortByCategory_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(637, 579);
+            this.ClientSize = new System.Drawing.Size(643, 579);
+            this.Controls.Add(this.SortByCategory);
             this.Controls.Add(this.episodeDescription);
             this.Controls.Add(this.PodcastFeed);
             this.Controls.Add(this.label6);
@@ -381,6 +392,7 @@ namespace PresentationLayer
         private System.Windows.Forms.ColumnHeader Avsnittnamn;
         private System.Windows.Forms.Label episodeDescription;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button SortByCategory;
     }
 }
 
