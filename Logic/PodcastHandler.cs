@@ -7,6 +7,7 @@ using System.Xml.Linq;
 using System;
 using System.Timers;
 using SharedModels;
+using System.Threading.Tasks;
 
 namespace Logic
 {
@@ -109,13 +110,13 @@ namespace Logic
 
         }
 
-        public Podcast GetPodcastFeed(string url, string selectedCategory, string timer)   
+        public async Task<Podcast> GetPodcastFeed(string url, string selectedCategory, string timer)   
         {
             Category selectedCategoryObject = cDB.AddCategory(selectedCategory);
             int x = 3;
-            Podcast nyPodd = pDB.AddPodcast();
+            Podcast nyPodd = new Podcast();
             string rssFeedurl = url;
-            using (XmlReader reader = XmlReader.Create(rssFeedurl))
+            using (XmlReader reader = XmlReader.Create(rssFeedurl, new XmlReaderSettings() { Async = true }))
             {
                 SyndicationFeed feed = SyndicationFeed.Load(reader);
                 nyPodd.Title += feed.Title.Text;
@@ -131,23 +132,23 @@ namespace Logic
                 }
                 nyPodd.episodeCount = x;
                 nyPodd.Episodes = eDB.Episodes;
-               
+
                 return nyPodd;
             }
         }
 
-        public void addPodcast(string url, string selectedCategory, string timer)
+        public async Task addPodcast(string url, string selectedCategory, string timer)
         {
-            Podcast newPodcast = GetPodcastFeed(url, selectedCategory, timer);
+            Podcast result = await Task.Run(() => GetPodcastFeed(url, selectedCategory, timer));
             if (eHandler.IfFileExists(@"C:\podFeeds\poddar.txt"))
             {
                 pDB.Podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
-                pDB.Podcasts.Add(newPodcast);
+                pDB.Podcasts.Add(result);
                 serializer.Serialize<Podcast>(@"C:\podFeeds\poddar.txt", pDB.Podcasts);
             }
             else
             {
-                pDB.Podcasts.Add(newPodcast);
+                pDB.Podcasts.Add(result);
                 serializer.Serialize<Podcast>(@"C:\podFeeds\poddar.txt", pDB.Podcasts);
             }
         }
@@ -212,7 +213,7 @@ namespace Logic
                 foreach (Podcast podcast in pDB.Podcasts)
                 {
                     var timer = new NamedTimer(podcast.Url);
-                    timer.Interval = Int32.Parse(podcast.UpdateFrequency) * 600;
+                    timer.Interval = Int32.Parse(podcast.UpdateFrequency) * 6000;
                     timer.Elapsed += OnTimedEvent;
                     timer.Start();
 

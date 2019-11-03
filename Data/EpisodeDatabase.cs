@@ -7,7 +7,7 @@ using SharedModels;
 
 namespace Data
 {
-    public class EpisodeDatabase
+    public class EpisodeDatabase : PodcastDatabase
     {
         public List<Episode> Episodes;
 
@@ -21,6 +21,16 @@ namespace Data
             Episode newEpisode = new Episode(title, desc, nmbr);
             Episodes.Add(newEpisode);
             return newEpisode;
+        }
+
+        public override List<string> ReturnNamesAsString()
+        {
+            List<string> NameList = new List<string>();
+            foreach (Episode ep in Episodes)
+            {
+                NameList.Add(ep.Name);
+            }
+            return NameList;
         }
     }
 }

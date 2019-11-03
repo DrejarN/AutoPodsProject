@@ -27,6 +27,17 @@ namespace Data
             Podcasts.Add(newPodcast);
             return newPodcast;
         }
+
+        public virtual List<string> ReturnNamesAsString()
+        {
+            List<string> NameList = new List<string>();
+            foreach(Podcast pod in Podcasts)
+            {
+                NameList.Add(pod.Title);
+            }
+            return NameList;
+        }
+
     }
 
 

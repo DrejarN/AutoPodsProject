@@ -12,13 +12,10 @@ namespace SharedModels
 
         public string Description { get; set; }
 
-        public int EpisodeNmbr { get; set; }
-
         public Episode(string title, string description, int nmbr)
         {
             this.Name = title;
             this.Description = description;
-            this.EpisodeNmbr = nmbr;
         }
     }
 }

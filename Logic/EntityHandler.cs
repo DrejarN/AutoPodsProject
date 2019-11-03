@@ -15,7 +15,7 @@ namespace Logic
 
         SerializerService serializer = new SerializerService();
         CategoryDatabase cDB = new CategoryDatabase();
-        PodcastDatabase pDB = new PodcastDatabase();
+        PodcastDatabase pDB= new PodcastDatabase();
         public List<Category> dezerialisedCategories;
 
         //public override void deserializePod()

@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using System.Xml;
 using Logic;
 using SharedModels;
-
+using System.Threading;
 namespace PresentationLayer
 {
     public partial class Form1 : Form
@@ -50,9 +50,9 @@ namespace PresentationLayer
 
         }
 
-        private void AddPodcastBtn_Click(object sender, EventArgs e)
+        private async void AddPodcastBtn_Click(object sender, EventArgs e)
         {
-            pHandler.addPodcast(urlInput.Text, categoryCb.Text, frequencyCb.Text);
+            await pHandler.addPodcast(urlInput.Text, categoryCb.Text, frequencyCb.Text);
             PodcastFeed.Items.Clear();
             FillPodcastFeed();
         }
