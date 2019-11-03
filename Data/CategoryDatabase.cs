@@ -23,6 +23,17 @@ namespace Data
             categoryDb.Add(newCategory);
             return newCategory;
         }
+
+        public Category AddCategory(Category category)
+        {
+            categoryDb.Add(category);
+            return category;
+        }
+
+        public void RemoveFromList(Category category)
+        {
+            categoryDb.Remove(category);
+        }
     }
 }     
 

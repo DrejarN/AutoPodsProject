@@ -17,15 +17,16 @@ namespace PresentationLayer
     public partial class Form1 : Form
     {
 
-        EntityHandler eHandler = new EntityHandler();
+        CategoryHandler cHandler = new CategoryHandler();
         PodcastHandler pHandler = new PodcastHandler();
         SerializerService serializer = new SerializerService();
+        Validation validate = new Validation();
         public Form1()
         {
             InitializeComponent();
-            CategoryList.DataSource = pHandler.FillCategoryList();
-            categoryCb.DataSource = eHandler.fillCategoryDropBox();
-            frequencyCb.DataSource = pHandler.testMetod();
+            CategoryList.DataSource = cHandler.FillCategoryList();
+            categoryCb.DataSource = cHandler.FillCategoryList();
+            frequencyCb.DataSource = cHandler.AllowedUpdateFrequencyList();
             FillPodcastFeed();
             pHandler.StartTimers();
         }
@@ -59,29 +60,30 @@ namespace PresentationLayer
 
         private void UpdatePodcastBtn_Click(object sender, EventArgs e)
         {
-            eHandler.ChangePodcastFromList(PodcastFeed.SelectedItems[0].Text, urlInput.Text, frequencyCb.Text, categoryCb.Text);
+            pHandler.ChangePodcastFromList(PodcastFeed.SelectedItems[0].Text, urlInput.Text, frequencyCb.Text, categoryCb.Text);
 
         }
 
         private void NewCategoryBtn_Click(object sender, EventArgs e)
         {
             String input = categoryInput.Text;
-            eHandler.AddNewCategoryToList(input);
+            cHandler.AddNewCategoryToList(input);
             categoryInput.Clear();
-            CategoryList.DataSource = pHandler.FillCategoryList();
-            categoryCb.DataSource = eHandler.fillCategoryDropBox();
+            CategoryList.DataSource = cHandler.FillCategoryList();
+            categoryCb.DataSource = cHandler.FillCategoryList();
         }
 
         private void RemovePodcastBtn_Click(object sender, EventArgs e)
         {
-             eHandler.RemovePodcastFromList(PodcastFeed.SelectedItems[0].Text);
+            pHandler.RemovePodcastFromList(PodcastFeed.SelectedItems[0].Text);
             FillPodcastFeed();
         }
 
         private void RemoveCategoryBtn_Click(object sender, EventArgs e)
         {
-            eHandler.RemoveCategoryFromList(CategoryList.SelectedItem.ToString());
-            CategoryList.DataSource = pHandler.FillCategoryList();
+            cHandler.RemoveCategoryFromList(CategoryList.SelectedItem.ToString());
+            CategoryList.DataSource = cHandler.FillCategoryList();
+            categoryCb.DataSource = cHandler.FillCategoryList();
         }
 
         private void categoryList_SelectedIndexChanged(object sender, EventArgs e)
@@ -91,8 +93,9 @@ namespace PresentationLayer
 
         private void saveCategoryBtn_Click(object sender, EventArgs e)
         {
-            eHandler.ChangeCategoryFromList(CategoryList.SelectedItem.ToString(), categoryInput.Text);
-            CategoryList.DataSource = pHandler.FillCategoryList();
+            cHandler.ChangeCategoryFromList(CategoryList.SelectedItem.ToString(), categoryInput.Text);
+            CategoryList.DataSource = cHandler.FillCategoryList();
+
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -113,7 +116,7 @@ namespace PresentationLayer
         public void FillPodcastFeed()
         {
             PodcastFeed.Items.Clear();
-            if (eHandler.IfFileExists(@"C:\podFeeds\poddar.txt"))
+            if (validate.IfFileExists(@"C:\podFeeds\poddar.txt"))
             {
                 List<Podcast> podcasts = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
                 foreach (Podcast pod in podcasts)

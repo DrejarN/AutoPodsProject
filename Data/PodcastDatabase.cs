@@ -18,24 +18,17 @@ namespace Data
         public Podcast AddPodcast(string title, string url, Category category, List<Episode> lista, int epCount, string freq)
         {
             Podcast newPodcast = new Podcast(title, url, category, lista, epCount, freq);
-            Podcasts.Add(newPodcast);
             return newPodcast;
         }
-        public Podcast AddPodcast()
+        public Podcast AddPodcast(Podcast podcast)
         {
-            Podcast newPodcast = new Podcast();
-            Podcasts.Add(newPodcast);
-            return newPodcast;
+            Podcasts.Add(podcast);
+            return podcast;
         }
 
-        public virtual List<string> ReturnNamesAsString()
+        public void RemoveFromList(Podcast aProduct)
         {
-            List<string> NameList = new List<string>();
-            foreach(Podcast pod in Podcasts)
-            {
-                NameList.Add(pod.Title);
-            }
-            return NameList;
+            Podcasts.Remove(aProduct);
         }
 
     }

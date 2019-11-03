@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EntityHandler.cs" />
+    <Compile Include="CategoryHandler.cs" />
     <Compile Include="SerializerService.cs" />
     <Compile Include="Validation.cs" />
     <Compile Include="PodcastHandler.cs" />
