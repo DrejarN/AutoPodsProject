@@ -22,7 +22,7 @@ namespace Logic
             updateTimer.Start();
 
             updateTimer.Elapsed += (sender, e) => TimerElapsedHandler(sender, e, podcast);
-            updateTimer.Interval = Int32.Parse(podcast.UpdateFrequency) * 6000;
+            updateTimer.Interval = Int32.Parse(podcast.UpdateFrequency) * 600;
             updateTimer.Enabled = true;
             updateTimer.AutoReset = true;
         }
