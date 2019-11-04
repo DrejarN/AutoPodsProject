@@ -85,10 +85,22 @@ namespace PresentationLayer
         private void NewCategoryBtn_Click(object sender, EventArgs e)
         {
             String input = categoryInput.Text;
-            cHandler.AddNewCategoryToList(input);
-            categoryInput.Clear();
-            CategoryList.DataSource = cHandler.FillCategoryList();
-            categoryCb.DataSource = cHandler.FillCategoryList();
+
+            if (validate.IfStringFieldEmpty(input))
+            {
+                cHandler.AddNewCategoryToList(input);
+                categoryInput.Clear();
+                CategoryList.DataSource = cHandler.FillCategoryList();
+                categoryCb.DataSource = cHandler.FillCategoryList();
+            }
+            else
+            {
+                using (new CenterWinDialog(this))
+                {
+                    MessageBox.Show("Text field cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            
         }
 
         private void RemovePodcastBtn_Click(object sender, EventArgs e)
