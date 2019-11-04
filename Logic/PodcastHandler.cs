@@ -34,6 +34,19 @@ namespace Logic
             }
         }
 
+        public List<Podcast> getPodList()
+        {
+            List<Podcast> returnList = new List<Podcast>();
+            if (validate.IfFileExists(@"C:\podFeeds\poddar.txt"))
+            {
+                foreach (Podcast pod in pDB.Podcasts)
+                {
+                    returnList.Add(pod);
+                }
+            }
+            return returnList;
+        }
+
         public bool CheckPodcasts()
         {
             bool x = false;
@@ -137,103 +150,35 @@ namespace Logic
         public List<string> AllowedUpdateFrequencyList()
         {
             List<string> FrequencyInMin = new List<string>();
-            FrequencyInMin.Add("15");
+            FrequencyInMin.Add("13");
             FrequencyInMin.Add("30");
             FrequencyInMin.Add("60");
             return FrequencyInMin;
         }
-        //public void UpdateEpisodeViaTimer(string time)
-        //{
-        //    int x = 3;
-        //    foreach (Podcast podcast in pDB.Podcasts)
-        //    {
-        //        List<Episode> newEpList = new List<Episode>();
-        //        if (podcast.UpdateFrequency == time)
-        //        {
-        //            using (XmlReader reader = XmlReader.Create(podcast.Url))
-        //            {
-        //                SyndicationFeed feed = SyndicationFeed.Load(reader);
-        //                foreach (SyndicationItem item in feed.Items)
-        //                {
-        //                    string epTitle = item.Title.Text;
-        //                    string eDesc = item.Summary.Text;
-        //                    Episode nyEp = new Episode(epTitle, eDesc, x);
-        //                    newEpList.Add(nyEp);
-        //                    x++;
-        //                }
-        //                podcast.Episodes = newEpList;
-        //            }
-        //            serializer.Serialize<Podcast>(@"C:\podFeeds\poddar.txt", pDB.Podcasts);
-        //            deserializeList(filenameForJson);
-        //        }
-
-        //    }
-        //}
-
-        public void UpdateEpisodeViaTimer(string timer)
+        public List<Episode> UpdateEpisodes(string url)
         {
-            
-
-            if (validate.IfFileExists(@"C:\podFeeds\poddar.txt")) 
+            pDB.Podcasts = deserializedPodcasts;
+            int x = 3;
+            List<Episode> allEpisodes = new List<Episode>();
+            using (XmlReader reader = XmlReader.Create(url))
             {
-                List<Podcast> aList = serializer.Deserialize<Podcast>(@"C:\podFeeds\poddar.txt");
-                
-                foreach (Podcast podcast in aList)
+                SyndicationFeed feed = SyndicationFeed.Load(reader);
+                foreach (SyndicationItem item in feed.Items)
                 {
-                    int x = 3;
-
-                    if (podcast.UpdateFrequency == timer)
-                    {
-                        List<Episode> newEpList = new List<Episode>();
-                        using (XmlReader reader = XmlReader.Create(podcast.Url))
-                        {
-                            SyndicationFeed feed = SyndicationFeed.Load(reader);
-                            foreach (SyndicationItem item in feed.Items)
-                            {
-                                Episode newEp = new Episode(item.Title.Text, item.Summary.Text, x);
-                                newEpList.Add(newEp);
-                                x++;
-                            }
-                        }
-                        podcast.Episodes = newEpList;
-
-                    }
-                    else
-                    {
-                        break;
-                    }
-                    serializer.Serialize<Podcast>(@"C:\podFeeds\poddar.txt", aList);
+                    Episode episode = new Episode(item.Title.Text, item.Summary.Text, x);
+                    allEpisodes.Add(episode);
+                    x++;
                 }
             }
-            
+            foreach(Podcast pod in pDB.Podcasts)
+            { 
+                if(pod.Url == url)
+                {
+                    pod.Episodes = allEpisodes;
+                }
+            }
+            serializer.Serialize<Podcast>(@"C:\podFeeds\poddar.txt", pDB.Podcasts);
+            return allEpisodes;
         }
-        public void StartTimers()
-        {
-            var timer15 = new NamedTimer("15");
-            timer15.Interval = Int32.Parse("15") * 600;
-            timer15.Elapsed += OnTimedEvent;
-            timer15.AutoReset = true;
-            timer15.Enabled = true;
-
-            var timer30 = new NamedTimer("30");
-            timer30.Interval = Int32.Parse("30") * 600;
-            timer30.Elapsed += OnTimedEvent;
-            timer30.AutoReset = true;
-            timer30.Enabled = true;
-
-            var timer60 = new NamedTimer("60");
-            timer60.Interval = Int32.Parse("60") * 600;
-            timer60.Elapsed += OnTimedEvent;
-            timer60.AutoReset = true;
-            timer60.Enabled = true;
- 
-        }
-
-        private void OnTimedEvent(Object source, ElapsedEventArgs e)
-        {
-            NamedTimer timer = source as NamedTimer;
-            UpdateEpisodeViaTimer(timer.name);
-        }
-
     }
 }

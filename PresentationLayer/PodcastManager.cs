@@ -21,6 +21,7 @@ namespace PresentationLayer
         PodcastHandler pHandler = new PodcastHandler();
         SerializerService serializer = new SerializerService();
         Validation validate = new Validation();
+        TimerService tService = new TimerService();
         public Form1()
         {
             InitializeComponent();
@@ -28,7 +29,8 @@ namespace PresentationLayer
             categoryCb.DataSource = cHandler.FillCategoryList();
             frequencyCb.DataSource = cHandler.AllowedUpdateFrequencyList();
             FillPodcastFeed();
-            pHandler.StartTimers();
+            starttimers2();
+            starttimers();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -36,6 +38,22 @@ namespace PresentationLayer
             //Doin a lil test
         }
 
+        public void starttimers2()
+        {
+            List<Podcast> pList = pHandler.getPodList();
+            foreach (Podcast pod in pList)
+            {
+                tService.StartTimer(pod);
+            }
+        }
+        public void starttimers()
+        {
+            List<Podcast> pList = pHandler.getPodList();
+            foreach(Podcast pod in pList)
+            {
+                tService.StartFeedTimer(pod);
+            }
+        }
         private void vScrollBar1_Scroll(object sender, ScrollEventArgs e)
         {
 
