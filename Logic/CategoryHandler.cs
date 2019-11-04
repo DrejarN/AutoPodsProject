@@ -10,13 +10,14 @@ using SharedModels;
 
 namespace Logic
 {
-    public class CategoryHandler : PodcastHandler
+    public class CategoryHandler : PodcastHandler, IPod
     {
         List<Category> deserializedCategory;
-        string filenameForJson = @"C:\podFeeds\categories.txt";
+        public new string filenameForJson { get; set; }
 
         public CategoryHandler()
         {
+            this.filenameForJson = @"C:\podFeeds\categories.txt";
             deserializeList(filenameForJson);
         }
 

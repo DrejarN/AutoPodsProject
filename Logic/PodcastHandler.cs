@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Logic
 {
-    public class PodcastHandler
+    public class PodcastHandler : IPod
     {
         public SerializerService serializer = new SerializerService();
         public CategoryDatabase cDB = new CategoryDatabase();
@@ -19,10 +19,11 @@ namespace Logic
         public EpisodeDatabase eDB = new EpisodeDatabase();
         public Validation validate = new Validation();
         List<Podcast> deserializedPodcasts;
-        string filenameForJson = @"C:\podFeeds\poddar.txt";
+        public string filenameForJson {get; set;}
 
         public PodcastHandler()
         {
+            this.filenameForJson = @"C:\podFeeds\poddar.txt";
             deserializeList(filenameForJson);
         }
         public virtual void deserializeList(string filename)
