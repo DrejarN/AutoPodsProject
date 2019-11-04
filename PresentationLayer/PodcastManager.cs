@@ -76,6 +76,8 @@ namespace PresentationLayer
         private void RemovePodcastBtn_Click(object sender, EventArgs e)
         {
             pHandler.RemovePodcastFromList(PodcastFeed.SelectedItems[0].Text);
+            episodeDesc.Clear();
+            episodeList.Items.Clear();
             FillPodcastFeed();
         }
 
