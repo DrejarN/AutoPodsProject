@@ -150,7 +150,7 @@ namespace PresentationLayer
         {
             if(validate.IfItemNotSelected(PodcastFeed.SelectedItems.Count))
             {
-                pHandler.RemovePodcastFromList(PodcastFeed.SelectedItems[0].Text);
+                tService.StopTimer(pHandler.RemovePodcastFromList(PodcastFeed.SelectedItems[0].Text));
                 episodeDesc.Clear();
                 episodeList.Items.Clear();
                 FillPodcastFeed();

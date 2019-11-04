@@ -88,20 +88,27 @@ namespace Logic
             }
         }
 
-        public void RemovePodcastFromList(string podcastName)
+        public Podcast RemovePodcastFromList(string podcastName)
         {
+            Podcast podcastRemoved = new Podcast();
             try
             {
                 pDB.Podcasts = deserializedPodcasts;
-                Podcast podcastRemoved = pDB.Podcasts.FirstOrDefault(a => a.Title == podcastName);
+                podcastRemoved = pDB.Podcasts.FirstOrDefault(a => a.Title == podcastName);
+                
                 pDB.RemoveFromList(podcastRemoved);
                 serializer.Serialize(@"C:\podFeeds\poddar.txt", pDB.Podcasts);
                 deserializeList(filenameForJson);
+                return podcastRemoved;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
+                return podcastRemoved;
             }
+
+            
+
         }
 
         public void ChangePodcastFromList(string podcastName, string url, string freq, string category)
