@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 
 namespace PresentationLayer
 {
-    public class CenterWinDialog : IDisposable //Snott för att centrera message boxes.
+    public class CenterWinDialog : IDisposable //Den här klassens enda syfte är att centrera olika message/dialog boxar.
     {
         private int mTries = 0;
         private Form mOwner;

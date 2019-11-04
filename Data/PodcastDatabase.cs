@@ -26,9 +26,9 @@ namespace Data
             return podcast;
         }
 
-        public void RemoveFromList(Podcast aProduct)
+        public void RemoveFromList(Podcast podcast)
         {
-            Podcasts.Remove(aProduct);
+            Podcasts.Remove(podcast);
         }
 
     }

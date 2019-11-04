@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.ServiceModel.Syndication;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Logic
 {
@@ -22,22 +25,42 @@ namespace Logic
         public bool IfStringFieldEmpty(string fieldName)
         {
             bool emptyField = true;
-            if (fieldName == "") //||
+            if (fieldName == "")
             {
                 emptyField = false;
             }
             return emptyField;
         }
 
-        public bool IfUrlCorrectFormat(string url)
+        public bool IfFeedIsValidFormat(string url)
         {
-            bool isRss = false;
-            if (url.EndsWith("/rss"))
+            try
             {
-                isRss = true;
+                SyndicationFeed feed = SyndicationFeed.Load(XmlReader.Create(url));
+
+                foreach (SyndicationItem item in feed.Items)
+                {
+                    Debug.Print(item.Title.Text);
+                }
+                return true;
             }
-            return isRss;
+            catch (Exception)
+            {
+                return false;
+            }
         }
+
+
+        public bool IfItemNotSelected(int index)
+        {
+            bool item = false;
+            if (index > 0)
+            {
+                item = true;
+            }
+            return item;
+        }
+
     }
 
 

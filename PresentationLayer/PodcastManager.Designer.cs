@@ -157,7 +157,7 @@ namespace PresentationLayer
             this.saveCategoryBtn.TabIndex = 13;
             this.saveCategoryBtn.Text = "Spara";
             this.saveCategoryBtn.UseVisualStyleBackColor = true;
-            this.saveCategoryBtn.Click += new System.EventHandler(this.saveCategoryBtn_Click);
+            this.saveCategoryBtn.Click += new System.EventHandler(this.SaveCategoryBtn_Click);
             // 
             // removeCategoryBtn
             // 

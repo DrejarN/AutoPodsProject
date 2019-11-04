@@ -43,9 +43,6 @@
   <ItemGroup>
     <Compile Include="Category.cs" />
     <Compile Include="Episode.cs" />
-    <Compile Include="NamedTimer.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Podcast.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

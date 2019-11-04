@@ -71,9 +71,18 @@ namespace PresentationLayer
 
         private async void AddPodcastBtn_Click(object sender, EventArgs e)
         {
-            await pHandler.addPodcast(urlInput.Text, categoryCb.Text, frequencyCb.Text);
-            PodcastFeed.Items.Clear();
-            FillPodcastFeed();
+            string input = urlInput.Text;
+            if (validate.IfFeedIsValidFormat(input)) {
+                await pHandler.addPodcast(urlInput.Text, categoryCb.Text, frequencyCb.Text);
+                PodcastFeed.Items.Clear();
+                FillPodcastFeed();
+            } else
+            {
+                using (new CenterWinDialog(this))
+                {
+                    MessageBox.Show("The URL does not contain a valid RSS feed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void UpdatePodcastBtn_Click(object sender, EventArgs e)
@@ -102,33 +111,66 @@ namespace PresentationLayer
             }
             
         }
-
-        private void RemovePodcastBtn_Click(object sender, EventArgs e)
+        private void SaveCategoryBtn_Click(object sender, EventArgs e)
         {
-            pHandler.RemovePodcastFromList(PodcastFeed.SelectedItems[0].Text);
-            episodeDesc.Clear();
-            episodeList.Items.Clear();
-            FillPodcastFeed();
+            string input = categoryInput.Text;
+            if(validate.IfStringFieldEmpty(input))
+            {
+                cHandler.ChangeCategoryFromList(CategoryList.SelectedItem.ToString(), input);
+                CategoryList.DataSource = cHandler.FillCategoryList();
+                categoryInput.Clear();
+            }
+            else
+            {
+                using (new CenterWinDialog(this))
+                {
+                    MessageBox.Show("You must enter a new category name!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
-
         private void RemoveCategoryBtn_Click(object sender, EventArgs e)
         {
             cHandler.RemoveCategoryFromList(CategoryList.SelectedItem.ToString());
             CategoryList.DataSource = cHandler.FillCategoryList();
             categoryCb.DataSource = cHandler.FillCategoryList();
         }
+        private void SortByCategory_Click(object sender, EventArgs e)
+        {
+            PodcastFeed.Items.Clear();
+            List<Podcast> podcasts = pHandler.SortPodcastsByCategory(categoryCb.Text);
+            foreach (Podcast pod in podcasts)
+            {
+                string[] listToArray = { pod.episodeCount.ToString(), pod.Title, pod.UpdateFrequency, pod.categories.CategoryName };
+                string[] row1 = { listToArray[0], listToArray[2], listToArray[3] };
+                PodcastFeed.Items.Add(listToArray[1]).SubItems.AddRange(row1);
+            }
+
+        }
+        private void RemovePodcastBtn_Click(object sender, EventArgs e)
+        {
+            if(validate.IfItemNotSelected(PodcastFeed.SelectedItems.Count))
+            {
+                pHandler.RemovePodcastFromList(PodcastFeed.SelectedItems[0].Text);
+                episodeDesc.Clear();
+                episodeList.Items.Clear();
+                FillPodcastFeed();
+            } else
+            {
+                using (new CenterWinDialog(this))
+                {
+                    MessageBox.Show("You must select a podcast to remove it.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+     
 
         private void categoryList_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void saveCategoryBtn_Click(object sender, EventArgs e)
-        {
-            cHandler.ChangeCategoryFromList(CategoryList.SelectedItem.ToString(), categoryInput.Text);
-            CategoryList.DataSource = cHandler.FillCategoryList();
-
-        }
+        
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -226,20 +268,6 @@ namespace PresentationLayer
 
         }
 
-        private void SortByCategory_Click(object sender, EventArgs e)
-        {
-
-            PodcastFeed.Items.Clear();
-            List<Podcast> podcasts = pHandler.SortPodcastsByCategory(categoryCb.Text);
-                foreach (Podcast pod in podcasts)
-                {
-                    string[] listToArray = { pod.episodeCount.ToString(), pod.Title, pod.UpdateFrequency, pod.categories.CategoryName };
-                    string[] row1 = { listToArray[0], listToArray[2], listToArray[3] };
-                    PodcastFeed.Items.Add(listToArray[1]).SubItems.AddRange(row1);
-                }
-
-        }
     }
-
 }
 
