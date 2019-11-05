@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+
 using Data;
 using SharedModels;
 
@@ -43,7 +38,6 @@ namespace Logic
                 serializer.Serialize(@"C:\podFeeds\categories.txt", cDB.categoryDb);
             }
         }
-
         public void RemoveCategoryFromList(string categoryName) 
         {
             cDB.categoryDb = deserializedCategory;
@@ -52,7 +46,6 @@ namespace Logic
             serializer.Serialize(@"C:\podFeeds\categories.txt", cDB.categoryDb);
             deserializeList(filenameForJson);
         }
-
         public void ChangeCategoryFromList(string categoryName, string changedCategoryName)
         {
             var category = cDB.categoryDb.FirstOrDefault(x => x.CategoryName == categoryName);

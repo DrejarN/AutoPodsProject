@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.ServiceModel.Syndication;
 using System.Xml;
-using Data;
 using System.Linq;
-using System.Xml.Linq;
 using System;
-using System.Timers;
-using SharedModels;
 using System.Threading.Tasks;
+
+using Data;
+using SharedModels;
 
 namespace Logic
 {
@@ -35,8 +34,6 @@ namespace Logic
             }
         }
 
-
-
         public List<Podcast> getPodList()
         {
             List<Podcast> returnList = new List<Podcast>();
@@ -48,20 +45,6 @@ namespace Logic
                 }
             }
             return returnList;
-        }
-
-        public bool CheckPodcasts()
-        {
-            bool x = false;
-            if(validate.IfFileExists(@"C:\podFeeds\poddar.txt"))
-            {
-                x = true;
-            }
-            return x;
-        }
-        public void FillDescriptionBox() //När du klickar på ett avsnitt i avsnittslistan fylls textboxen till höger med en summary om avsnittet.
-        {
-
         }
 
         public async Task<Podcast> GetPodcastFeed(string url, string selectedCategory, string timer)   
@@ -85,7 +68,6 @@ namespace Logic
                     newEpList.Add(nyEp);
                     x++;
                 }
-
                 return pDB.AddPodcast(title, Url, category, newEpList, x, UpdateFreq);
             }
         }
@@ -97,7 +79,6 @@ namespace Logic
             {
                 pDB.Podcasts = deserializedPodcasts;
                 podcastRemoved = pDB.Podcasts.FirstOrDefault(a => a.Title == podcastName);
-                
                 pDB.RemoveFromList(podcastRemoved);
                 serializer.Serialize(@"C:\podFeeds\poddar.txt", pDB.Podcasts);
                 deserializeList(filenameForJson);
@@ -108,9 +89,6 @@ namespace Logic
                 Console.WriteLine(e.Message);
                 return podcastRemoved;
             }
-
-            
-
         }
 
         public void ChangePodcastFromList(string podcastName, string url, string freq, string category)
@@ -152,15 +130,13 @@ namespace Logic
         {
                 List<Podcast> sortedPodcastList;
                 pDB.Podcasts = deserializedPodcasts;
-            sortedPodcastList = pDB.Podcasts.OrderByDescending(pod => pod.categories.CategoryName == category).ToList();
+                sortedPodcastList = pDB.Podcasts.OrderByDescending(pod => pod.categories.CategoryName == category).ToList();
                 return sortedPodcastList;
-
-          
         }
         public List<string> AllowedUpdateFrequencyList()
         {
             List<string> FrequencyInMin = new List<string>();
-            FrequencyInMin.Add("13");
+            FrequencyInMin.Add("15");
             FrequencyInMin.Add("30");
             FrequencyInMin.Add("60");
             return FrequencyInMin;

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+
 using SharedModels;
 
 namespace Data
@@ -11,7 +8,6 @@ namespace Data
     {
         public List<Category> categoryDb { get; set; }
         
-
         public CategoryDatabase()
         {
             categoryDb = new List<Category>();

@@ -30,7 +30,6 @@ namespace PresentationLayer
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.categoryInput = new System.Windows.Forms.TextBox();
             this.newCategoryBtn = new System.Windows.Forms.Button();
@@ -57,7 +56,6 @@ namespace PresentationLayer
             this.Frekvens = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Kategori = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.episodeDescription = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SortByCategory = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -136,7 +134,6 @@ namespace PresentationLayer
             this.frequencyCb.Name = "frequencyCb";
             this.frequencyCb.Size = new System.Drawing.Size(92, 21);
             this.frequencyCb.TabIndex = 11;
-            this.frequencyCb.SelectedIndexChanged += new System.EventHandler(this.frequencyCb_SelectedIndexChanged);
             // 
             // categoryCb
             // 
@@ -146,7 +143,6 @@ namespace PresentationLayer
             this.categoryCb.Name = "categoryCb";
             this.categoryCb.Size = new System.Drawing.Size(92, 21);
             this.categoryCb.TabIndex = 12;
-            this.categoryCb.SelectedIndexChanged += new System.EventHandler(this.categoryCb_SelectedIndexChanged);
             // 
             // saveCategoryBtn
             // 
@@ -231,7 +227,6 @@ namespace PresentationLayer
             this.label5.Size = new System.Drawing.Size(91, 13);
             this.label5.TabIndex = 19;
             this.label5.Text = "Podcast # Avsnitt";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // episodeDesc
             // 
@@ -250,7 +245,6 @@ namespace PresentationLayer
             this.CategoryList.Name = "CategoryList";
             this.CategoryList.Size = new System.Drawing.Size(134, 134);
             this.CategoryList.TabIndex = 21;
-            this.CategoryList.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -260,7 +254,6 @@ namespace PresentationLayer
             this.label6.Size = new System.Drawing.Size(73, 13);
             this.label6.TabIndex = 23;
             this.label6.Text = "Podcast Feed";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // PodcastFeed
             // 
@@ -276,7 +269,6 @@ namespace PresentationLayer
             this.PodcastFeed.TabIndex = 24;
             this.PodcastFeed.UseCompatibleStateImageBehavior = false;
             this.PodcastFeed.View = System.Windows.Forms.View.Details;
-            this.PodcastFeed.SelectedIndexChanged += new System.EventHandler(this.PodcastFeed_SelectedIndexChanged);
             this.PodcastFeed.Click += new System.EventHandler(this.PodcastFeed_Click);
             // 
             // Namn
@@ -307,11 +299,6 @@ namespace PresentationLayer
             this.episodeDescription.Size = new System.Drawing.Size(101, 13);
             this.episodeDescription.TabIndex = 26;
             this.episodeDescription.Text = "Episode Description";
-            // 
-            // timer1
-            // 
-            this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // SortByCategory
             // 
@@ -352,7 +339,7 @@ namespace PresentationLayer
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Automated RSS Podcast Reader";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -391,7 +378,6 @@ namespace PresentationLayer
         private System.Windows.Forms.ColumnHeader Kategori;
         private System.Windows.Forms.ColumnHeader Avsnittnamn;
         private System.Windows.Forms.Label episodeDescription;
-        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button SortByCategory;
     }
 }

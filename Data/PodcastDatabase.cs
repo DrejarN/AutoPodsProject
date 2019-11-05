@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+
 using SharedModels;
 
 namespace Data
@@ -25,13 +22,9 @@ namespace Data
             Podcasts.Add(podcast);
             return podcast;
         }
-
         public void RemoveFromList(Podcast podcast)
         {
             Podcasts.Remove(podcast);
         }
-
     }
-
-
 }

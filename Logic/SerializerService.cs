@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Data;
 using Newtonsoft.Json;
-using SharedModels;
 
 namespace Logic
 {
@@ -23,8 +17,6 @@ namespace Logic
                 TypeNameHandling = TypeNameHandling.All
             };
         }
-
-        //Generisk serializer, deserializer
 
         public void Serialize<T>(string filename, List<T> Lists)
         {
@@ -65,6 +57,5 @@ namespace Logic
                 throw new Exception(ex.Message);
             }
         }
-
     }
 }
