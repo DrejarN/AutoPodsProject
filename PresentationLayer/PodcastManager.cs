@@ -25,6 +25,7 @@ namespace PresentationLayer
         public Form1()
         {
             InitializeComponent();
+            CreateDirectory();
             CategoryList.DataSource = cHandler.FillCategoryList();
             categoryCb.DataSource = cHandler.FillCategoryList();
             frequencyCb.DataSource = cHandler.AllowedUpdateFrequencyList();
@@ -99,7 +100,8 @@ namespace PresentationLayer
             {
                 cHandler.AddNewCategoryToList(input);
                 categoryInput.Clear();
-                CategoryList.DataSource = cHandler.FillCategoryList();
+
+                DataSource = cHandler.FillCategoryList();
                 categoryCb.DataSource = cHandler.FillCategoryList();
             }
             else
@@ -255,6 +257,14 @@ namespace PresentationLayer
                         }
                     }
                 }
+            }
+        }
+
+        public void CreateDirectory()
+        {
+            if (!System.IO.Directory.Exists(@":C\podFeeds"))
+            {
+                System.IO.Directory.CreateDirectory(@"C:\podFeeds");
             }
         }
 

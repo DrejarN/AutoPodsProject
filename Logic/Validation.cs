@@ -61,13 +61,13 @@ namespace Logic
             return item;
         }
 
+        public void CreateDirectory()
+        {
+            if (!System.IO.Directory.Exists(@":C\podFeeds"))
+            {
+                System.IO.Directory.CreateDirectory(@":C\podFeeds");
+            }
+        }
+
     }
-
-
-
-    //Valideringar:
-    // Om fil existerar (Poddar och kategorier)
-    // Om ett fält är tomt
-    // Om podcastfeed är rätt format ( /rss på slutet av url)
-
 }
