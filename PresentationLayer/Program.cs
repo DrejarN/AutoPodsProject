@@ -17,7 +17,10 @@ namespace PresentationLayer
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-
         }
+
+        //Skapar en mapp under :C där filerna sparas så programmet kan användas.
+
+        
     }
 }

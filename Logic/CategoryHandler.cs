@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Data;
 using SharedModels;
@@ -59,7 +60,7 @@ namespace Logic
             serializer.Serialize(@"C:\podFeeds\categories.txt", cDB.categoryDb);
             deserializeList(filenameForJson);
         }
-        public List<string> FillCategoryList() //Fyller hela kategorilistan och dropboxlistan
+        public List<string> FillCategoryList() //Måste fixas.
         {
             List<string> CategoryNameList = new List<string>();
             if (validate.IfFileExists(@"C:\podFeeds\categories.txt"))
@@ -67,9 +68,10 @@ namespace Logic
                 cDB.categoryDb = deserializedCategory;
                 foreach (Category category in cDB.categoryDb)
                 {
+      
                     CategoryNameList.Add(category.CategoryName);
                 }
-            }
+            } 
             return CategoryNameList;
         }
     }
