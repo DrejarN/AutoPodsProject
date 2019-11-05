@@ -64,7 +64,7 @@ namespace Logic
             List<string> CategoryNameList = new List<string>();
             if (validate.IfFileExists(@"C:\podFeeds\categories.txt"))
             {
-                cDB.categoryDb = deserializedCategory;
+                deserializeList(filenameForJson);
                 foreach (Category category in cDB.categoryDb)
                 {
                     CategoryNameList.Add(category.CategoryName);

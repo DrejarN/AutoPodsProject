@@ -91,7 +91,7 @@ namespace PresentationLayer
 
         }
 
-        private void NewCategoryBtn_Click(object sender, EventArgs e)
+        private async void NewCategoryBtn_Click(object sender, EventArgs e)
         {
             String input = categoryInput.Text;
 
