@@ -144,7 +144,7 @@ namespace Logic
         public List<Episode> UpdateEpisodes(string url)
         {
             pDB.Podcasts = deserializedPodcasts;
-            int x = 3;
+            int x = 1;
             List<Episode> allEpisodes = new List<Episode>();
             using (XmlReader reader = XmlReader.Create(url))
             {
