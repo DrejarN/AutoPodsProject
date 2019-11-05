@@ -53,7 +53,7 @@ namespace Logic
             serializer.Serialize(@"C:\podFeeds\categories.txt", cDB.categoryDb);
             deserializeList(filenameForJson);
         }
-        public List<string> FillCategoryList() //Måste fixas.
+        public List<string> FillCategoryList()
         {
             List<string> CategoryNameList = new List<string>();
             if (validate.IfFileExists(@"C:\podFeeds\categories.txt"))
@@ -61,7 +61,6 @@ namespace Logic
                 deserializeList(filenameForJson);
                 foreach (Category category in cDB.categoryDb)
                 {
-      
                     CategoryNameList.Add(category.CategoryName);
                 }
             } 

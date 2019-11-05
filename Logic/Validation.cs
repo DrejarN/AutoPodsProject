@@ -46,7 +46,6 @@ namespace Logic
             }
         }
 
-
         public bool IfItemNotSelected(int index)
         {
             bool item = false;
