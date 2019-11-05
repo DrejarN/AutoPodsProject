@@ -92,7 +92,7 @@ namespace PresentationLayer
 
         }
 
-        private async void NewCategoryBtn_Click(object sender, EventArgs e)
+        private void NewCategoryBtn_Click(object sender, EventArgs e)
         {
             String input = categoryInput.Text;
 
@@ -100,8 +100,7 @@ namespace PresentationLayer
             {
                 cHandler.AddNewCategoryToList(input);
                 categoryInput.Clear();
-
-                DataSource = cHandler.FillCategoryList();
+                CategoryList.DataSource = cHandler.FillCategoryList();
                 categoryCb.DataSource = cHandler.FillCategoryList();
             }
             else
