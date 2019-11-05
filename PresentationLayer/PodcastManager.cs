@@ -147,9 +147,19 @@ namespace PresentationLayer
         }
         private void RemoveCategoryBtn_Click(object sender, EventArgs e)
         {
-            cHandler.RemoveCategoryFromList(CategoryList.SelectedItem.ToString());
-            CategoryList.DataSource = cHandler.FillCategoryList();
-            categoryCb.DataSource = cHandler.FillCategoryList();
+            if (validate.IfItemNotSelected(CategoryList.Items.Count))
+            {
+                cHandler.RemoveCategoryFromList(CategoryList.SelectedItem.ToString());
+                CategoryList.DataSource = cHandler.FillCategoryList();
+                categoryCb.DataSource = cHandler.FillCategoryList();
+            } else
+            {
+                using (new CenterWinDialog(this))
+                {
+                    MessageBox.Show("No category selected", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+          
         }
         private void SortByCategory_Click(object sender, EventArgs e)
         {
