@@ -132,10 +132,20 @@ namespace PresentationLayer
         {
             string input = categoryInput.Text;
             if(validate.IfStringFieldEmpty(input))
-            {
-                cHandler.ChangeCategoryFromList(CategoryList.SelectedItem.ToString(), input);
-                CategoryList.DataSource = cHandler.FillCategoryList();
-                categoryInput.Clear();
+            { 
+                if(validate.IfItemNotSelected(CategoryList.Items.Count))
+                {
+                    cHandler.ChangeCategoryFromList(CategoryList.SelectedItem.ToString(), input);
+                    CategoryList.DataSource = cHandler.FillCategoryList();
+                    categoryInput.Clear();
+                } else
+                {
+                    using (new CenterWinDialog(this))
+                    {
+                        MessageBox.Show("You must have an existing category in order to make changes!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                
             }
             else
             {
